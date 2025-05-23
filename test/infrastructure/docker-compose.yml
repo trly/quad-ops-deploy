@@ -21,11 +21,13 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
     command: start-dev
+    depends_on:
+      - pki
     networks:
       - default
       - reverse-proxy
     x-podman-env-secrets:
-        keycloak_bootstrap_password:: KC_BOOTSTRAP_ADMIN_PASSWORD
+        keycloak_bootstrap_password: KC_BOOTSTRAP_ADMIN_PASSWORD
 
 
   reverse-proxy:
@@ -35,6 +37,9 @@ services:
       - '8880:80'
       - '8843:443'
       - '8081:81'
+
+    depends_on:
+      - pki
 
     environment: {}
 
