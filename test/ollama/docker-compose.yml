@@ -1,0 +1,27 @@
+services:
+  ollama:
+    image: docker.io/ollama/ollama:latest
+    container_name: ollama
+    ports:
+       - "11434:11434"
+    volumes:
+       - ollama_data:/root/.ollama
+    environment:
+       - OLLAMA_HOST=0.0.0.0:11434
+    restart: unless-stopped
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-WebUI
+    ports:
+       - "3000:8080"
+    volumes:
+       - openwebui_data:/app/Backend/Data
+    environment:
+       - OLLAMA_BASE_URL=http://ollama:11434
+    extra_hosts:
+       - "host.docker.internal:host-gateway"
+    restart: always
+
+volumes:
+  ollama_data:
+  openwebui_data:
