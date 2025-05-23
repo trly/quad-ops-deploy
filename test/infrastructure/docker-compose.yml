@@ -21,8 +21,6 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
     command: start-dev
-    depends_on:
-      - pki
     networks:
       - default
       - reverse-proxy
