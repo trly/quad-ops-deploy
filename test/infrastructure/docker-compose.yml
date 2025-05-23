@@ -21,6 +21,8 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
     command: start-dev
+    depends_on:
+      - pki
     networks:
       - default
       - reverse-proxy
@@ -35,10 +37,6 @@ services:
       - '8880:80'
       - '8843:443'
       - '8081:81'
-
-    depends_on:
-    - pki
-    - keycloak
 
     environment: {}
 
