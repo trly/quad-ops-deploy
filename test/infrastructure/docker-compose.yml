@@ -44,21 +44,21 @@ services:
     environment: {}
 
     volumes:
-      - reverse_proxy:/data
+      - reverse-proxy:/data
       - letsencrypt:/etc/letsencrypt
 
     networks:
       - default
       - reverse-proxy
 volumes:
-  reverse_proxy:
-  certificate_authority:
+  reverse-proxy:
+  certificate-authority:
   letsencrypt:
 
 secrets:
-  step_ca_password:
+  step-ca-password:
     external: true
-  keycloak_bootstrap_password:
+  keycloak-bootstrap-password:
     external: true
 
 networks:

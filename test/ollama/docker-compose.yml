@@ -5,7 +5,7 @@ services:
     ports:
        - "11434:11434"
     volumes:
-       - ollama_data:/root/.ollama
+       - ollama-data:/root/.ollama
     environment:
        - OLLAMA_HOST=0.0.0.0:11434
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
     ports:
        - "3000:8080"
     volumes:
-       - openwebui_data:/app/Backend/Data
+       - openwebui-data:/app/Backend/Data
     environment:
        - OLLAMA_BASE_URL=http://ollama:11434
     extra_hosts:
@@ -23,5 +23,5 @@ services:
     restart: always
 
 volumes:
-  ollama_data:
-  openwebui_data:
+  ollama-data:
+  openwebui-data:
