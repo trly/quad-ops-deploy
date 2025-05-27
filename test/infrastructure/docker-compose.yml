@@ -5,13 +5,13 @@ services:
     ports:
     - '9000:9000'
     volumes:
-    - certificate_authority:/home/step
+    - certificate-authority:/home/step
     networks:
     - default
     - reverse-proxy
 
     x-podman-env-secrets:
-      step_ca_password: DOCKER_STEPCA_INIT_PASSWORD
+      step-: DOCKER_STEPCA_INIT_PASSWORD
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.2.4
@@ -27,7 +27,7 @@ services:
       - default
       - reverse-proxy
     x-podman-env-secrets:
-        keycloak_bootstrap_password: KC_BOOTSTRAP_ADMIN_PASSWORD
+        keycloak-bootstrap-password: KC_BOOTSTRAP_ADMIN_PASSWORD
 
 
   reverse-proxy:
