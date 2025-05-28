@@ -17,6 +17,7 @@ services:
        - openwebui-data:/app/Backend/Data
     environment:
        - OLLAMA_BASE_URL=http://ollama:11434
+       - WEBUI_URL=http://ai.localhost.localdomain:8880
     extra_hosts:
        - "host.docker.internal:host-gateway"
     restart: always
