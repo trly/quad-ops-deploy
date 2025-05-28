@@ -2,13 +2,11 @@ services:
   pki:
     image: docker.io/smallstep/step-ca:latest
     restart: always
-    ports:
-    - '9000:9000'
     volumes:
     - certificate-authority:/home/step
     networks:
     - default
-    - reverse-proxy
+    - pki
 
     x-podman-env-secrets:
       step-ca-password: DOCKER_STEPCA_INIT_PASSWORD
@@ -16,8 +14,6 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.2.4
     restart: always
-    ports:
-      - '8082:8080'
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
     command: start-dev
@@ -25,7 +21,8 @@ services:
       - pki
     networks:
       - default
-      - reverse-proxy
+      - proxy
+      - pki
     x-podman-env-secrets:
         keycloak-bootstrap-password: KC_BOOTSTRAP_ADMIN_PASSWORD
 
@@ -49,7 +46,8 @@ services:
 
     networks:
       - default
-      - reverse-proxy
+      - proxy
+      - pki
 volumes:
   reverse-proxy:
   certificate-authority:
@@ -63,4 +61,5 @@ secrets:
 
 networks:
   default:
-  reverse-proxy:
+  pki:
+  proxy:
