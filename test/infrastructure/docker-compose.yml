@@ -11,7 +11,7 @@ services:
     - reverse-proxy
 
     x-podman-env-secrets:
-      step-: DOCKER_STEPCA_INIT_PASSWORD
+      step-ca-password: DOCKER_STEPCA_INIT_PASSWORD
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.2.4
