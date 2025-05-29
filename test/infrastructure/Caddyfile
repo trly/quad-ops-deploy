@@ -11,7 +11,7 @@ ai.localhost {
 }
 
 drop.localhost {
-    reverse_proxy pairdrop:8080
+    reverse_proxy pairdrop-app:8080
 }
 
 keycloak.localhost {

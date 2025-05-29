@@ -3,6 +3,8 @@ services:
     image: "lscr.io/linuxserver/pairdrop:latest"
     container_name: pairdrop
     restart: unless-stopped
+    networks:
+      - infrastructure-proxy
     environment:
       PUID: 1000 # UID to run the application as
       PGID: 1000 # GID to run the application as
@@ -12,3 +14,6 @@ services:
       DEBUG_MODE: false # Set to true to debug container and peer connections.
       TZ: America/Detroit # Time Zone
 
+networks:
+  infrastructure-proxy:
+    external: true
