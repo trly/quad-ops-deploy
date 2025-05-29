@@ -21,14 +21,15 @@ services:
     networks:
       - default
       - infrastructure-proxy
-  mcp-server-time:
-    build:
-      context: .
-      dockerfile: Dockerfile.mcp-server-time
-    container_name: mcp-server-time
+  mcpo:
+    image: ghcr.io/open-webui/mcpo:main
+    container_name: mcpo
+    command: mcpo --config /app/mcpo.json
     restart: always
     networks:
       - default
+    volumes:
+      - mcpo.json:/app/mcpo.json
 
 volumes:
   ollama-data:
