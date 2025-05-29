@@ -1,5 +1,3 @@
-localhost
-
 pki.localhost {
     reverse_proxy pki:9000
 }
