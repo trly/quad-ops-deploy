@@ -29,7 +29,7 @@ services:
     networks:
       - default
     volumes:
-      - mcpo.json:/app/mcpo.json
+      - ./mcpo.json:/app/mcpo.json
 
 volumes:
   ollama-data:
