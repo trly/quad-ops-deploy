@@ -16,6 +16,11 @@ services:
     restart: always
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_HOSTNMAE: keycloak.localhost
+      KC_HOSTNAME_PORT: 8443
+      KC_HOSTNAME_URL: keycloak.localhost:8443
+      KC_HOSTNAME_ADMIN_URL: keycloak.localhost:8443
+      PROXY_ADDRESS_FORWARDING: "true"
     command: start-dev
     depends_on:
       - pki
