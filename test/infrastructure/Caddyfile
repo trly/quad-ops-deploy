@@ -1,0 +1,11 @@
+pki.localhost.localdomain {
+    reverse_proxy pki:9000
+}
+
+ai.localhost.localdomain {
+    reverse_proxy open-webui:8080
+}
+
+keycloak.localhost.localdomain {
+    reverse_proxy keycloak:8080
+}
