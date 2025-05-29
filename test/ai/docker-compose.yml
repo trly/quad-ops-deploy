@@ -19,6 +19,12 @@ services:
     networks:
       - default
       - infrastructure-proxy
+  mcp-server-time:
+    build: ./Dockerfile.mcp-server-time
+    container_name: mcp-server-time
+    restart: always
+    networks:
+      - default
 
 volumes:
   ollama-data:
