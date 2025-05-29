@@ -8,13 +8,9 @@
       "command": "uvx",
       "args": ["mcp-server-time", "--local-timezone=America/New_York"]
     },
-    "mcp_sse": {
-      "type": "sse",
-      "url": "http://127.0.0.1:8001/sse"
-    },
     "mcp_streamable_http": {
       "type": "streamable_http",
-      "url": "http://127.0.0.1:8002/mcp"
+      "url": "http://127.0.0.1:8001/mcp"
     }
   }
 }

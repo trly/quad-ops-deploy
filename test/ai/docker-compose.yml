@@ -24,12 +24,12 @@ services:
   mcpo:
     image: ghcr.io/open-webui/mcpo:main
     container_name: mcpo
-    command: mcpo --config /app/mcpo.json
+    command: [mcpo, --config, /app/mcpo.json]
     restart: always
     networks:
       - default
     volumes:
-      - ./mcpo.json:/app/mcpo.json
+      - ./mcpo.json:/app/mcpo.json:z
 
 volumes:
   ollama-data:
