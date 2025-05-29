@@ -1,5 +1,5 @@
 pki.localhost {
-    reverse_proxy pki:9000
+    reverse_proxy https://pki:9000
 }
 
 ai.localhost {
@@ -7,5 +7,5 @@ ai.localhost {
 }
 
 keycloak.localhost {
-    reverse_proxy keycloak:8080
+    reverse_proxy https://keycloak:8443
 }
