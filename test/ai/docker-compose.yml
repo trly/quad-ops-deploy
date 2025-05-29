@@ -22,7 +22,9 @@ services:
       - default
       - infrastructure-proxy
   mcp-server-time:
-    build: ./Dockerfile.mcp-server-time
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp-server-time
     container_name: mcp-server-time
     restart: always
     networks:
