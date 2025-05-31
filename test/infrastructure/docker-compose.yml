@@ -9,9 +9,9 @@ services:
     - pki
     environment:
       DOCKER_STEPCA_INIT_NAME: "Quad-Ops Local CA"
-      DOCKER_STEPCA_INIT_DNS_NAMES: "localhost,pki,pki.localhost"
+      DOCKER_STEPCA_INIT_DNS_NAMES: "localhost,pki,pki.test.blackmesa.lan,*.test.blackmesa.lan"
       DOCKER_STEPCA_INIT_ADDRESS: ":9000"
-      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "acme-localhost"
+      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "acme-blackmesa-test"
       DOCKER_STEPCA_INIT_ACME: "true"
       DOCKER_STEPCA_INIT_ACME_CHALLENGES: "http-01,dns-01"
       STEPCA_LOG_LEVEL: "info"
@@ -24,10 +24,10 @@ services:
     restart: always
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_HOSTNMAE: keycloak.localhost
+      KC_HOSTNMAE: keycloak.test.blackmesa.lan
       KC_HOSTNAME_PORT: 8443
-      KC_HOSTNAME_URL: keycloak.localhost:8443
-      KC_HOSTNAME_ADMIN_URL: keycloak.localhost:8443
+      KC_HOSTNAME_URL: keycloak.test.blackmesa.lan:8443
+      KC_HOSTNAME_ADMIN_URL: keycloak.test.blackmesa.lan:8443
       PROXY_ADDRESS_FORWARDING: "true"
     command: start-dev
     depends_on:
@@ -60,7 +60,7 @@ services:
 
     x-quad-ops-init:
       - image: cgr.dev/chainguard/curl:latest
-        command: ["sh", "-c", "curl -k -XGET https://pki:9000/roots.pem -o /step/pki/pki.localhost.crt"]
+        command: ["sh", "-c", "curl -k -XGET https://pki:9000/roots.pem -o /step/pki/pki.test.blackmesa.lan.crt"]
         volumes:
           - ca-store:/step/pki
         networks:

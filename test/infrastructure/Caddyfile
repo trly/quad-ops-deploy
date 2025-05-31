@@ -1,4 +1,4 @@
-pki.localhost {
+pki.test.blackmesa.lan {
     reverse_proxy https://pki:9000 {
         transport http {
             tls_insecure_skip_verify
@@ -6,15 +6,15 @@ pki.localhost {
     }
 }
 
-ai.localhost {
+ai.test.blackmesa.lan {
     reverse_proxy open-webui:8080
 }
 
-drop.localhost {
+drop.test.blackmesa.lan {
     reverse_proxy pairdrop-app:3000
 }
 
-keycloak.localhost {
+keycloak.test.blackmesa.lan {
     reverse_proxy https://keycloak:8443 {
         transport http {
             tls_insecure_skip_verify
@@ -22,11 +22,11 @@ keycloak.localhost {
     }
 }
 
-*.localhost {
+*.test.blackmesa.lan {
   tls {
-    dir https://pki:9000/acme/acme-localhost/directory
-    email example@localhost
-    trusted_roots /step/pki/pki.localhost.crt
+    dir https://pki:9000/acme/acme-blackmesa/directory
+    email admin@blackmesa.lan
+    trusted_roots /step/pki/pki.test.blackmesa.lan.crt
   }
   respond "Quad-Ops Managed Local Proxy"
 }
