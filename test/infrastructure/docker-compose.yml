@@ -57,8 +57,17 @@ services:
       - proxy
       - pki
 
+    x-quad-ops-init:
+      - image: cgr.dev/chainguard/curl:latest
+        command: ["sh", "-c", "curl -k -XGET https://pki:9000/roots.pem -o /step/pki/pki.localhost.crt"]
+        volumes:
+          - ca-store:/step/pki
+        networks:
+          - pki
+
 volumes:
   certificate-authority:
+  ca-store:
 
 secrets:
   step-ca-password:

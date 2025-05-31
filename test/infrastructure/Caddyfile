@@ -24,7 +24,9 @@ keycloak.localhost {
 
 *.localhost {
   tls {
-    ca http://pki:9000/acme/acme-localhost/directory
+    dir https://pki:9000/acme/acme-localhost/directory
+    email example@localhost
+    trusted_roots /step/pki/pki.localhost.crt
   }
   respond "Quad-Ops Managed Local Proxy"
 }
