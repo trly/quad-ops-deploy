@@ -45,6 +45,7 @@ services:
     restart: always
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:z
+      - ca-store:/step/pki
     ports:
       - '8080:80'
       - '8443:443'
