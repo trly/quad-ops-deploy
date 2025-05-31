@@ -7,6 +7,14 @@ services:
     networks:
     - default
     - pki
+    environment:
+      DOCKER_STEPCA_INIT_NAME: "Quad-Ops Local CA"
+      DOCKER_STEPCA_INIT_DNS_NAMES: "localhost,pki,pki.localhost"
+      DOCKER_STEPCA_INIT_ADDRESS: ":9000"
+      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "acme-localhost"
+      DOCKER_STEPCA_INIT_ACME: "true"
+      DOCKER_STEPCA_INIT_ACME_CHALLENGES: "http-01,dns-01"
+      STEPCA_LOG_LEVEL: "info"
 
     x-podman-env-secrets:
       step-ca-password: DOCKER_STEPCA_INIT_PASSWORD

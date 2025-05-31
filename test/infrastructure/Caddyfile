@@ -21,3 +21,10 @@ keycloak.localhost {
         }
     }
 }
+
+*.localhost {
+  tls {
+    ca http://pki:9000/acme/acme-localhost/directory
+  }
+  respond "Quad-Ops Managed Local Proxy"
+}
