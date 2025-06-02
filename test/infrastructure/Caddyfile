@@ -23,9 +23,8 @@ keycloak.test.blackmesa.lan {
 }
 
 *.test.blackmesa.lan {
-  tls {
+  tls travis.lyons@gmail.com {
     dir https://pki:9000/acme/acme-blackmesa/directory
-    email admin@blackmesa.lan
     trusted_roots /step/pki/pki.test.blackmesa.lan.crt
   }
   respond "Quad-Ops Managed Local Proxy"
