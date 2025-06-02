@@ -7,6 +7,7 @@
   respond "Quad-Ops Managed Local Proxy"
 
 }
+
 pki.test.blackmesa.lan {
     reverse_proxy https://pki:9000 {
         transport http {
