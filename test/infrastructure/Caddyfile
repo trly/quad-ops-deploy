@@ -2,7 +2,6 @@
   acme_ca https://pki:9000/acme/acme/directory
   acme_ca_root /step/pki/pki.test.blackmesa.lan.crt
   email travis.lyons@gmail.com
-  resolvers http-01
 }
 
 pki.test.blackmesa.lan {
