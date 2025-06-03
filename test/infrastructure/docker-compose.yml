@@ -60,7 +60,7 @@ services:
 
     x-quad-ops-init:
       - image: cgr.dev/chainguard/curl:latest
-        command: ["sh", "-c", "curl -k -XGET https://pki:9000/roots.pem -o /step/pki/pki.test.blackmesa.lan.crt"]
+        command: ["-k", "-XGET", "https://pki:9000/roots.pem", "-o", "/step/pki/pki.test.blackmesa.lan.crt"]
         volumes:
           - ca-store:/step/pki
         networks:
