@@ -2,6 +2,16 @@
   acme_ca https://pki:9000/acme/acme/directory
   acme_ca_root /step/pki/pki.test.blackmesa.lan.crt
   email travis.lyons@gmail.com
+    auto_https disable_redirects
+}
+
+:8080 {
+    # Handle ACME challenges
+    handle /.well-known/acme-challenge/* {
+        file_server
+    }
+    # Redirect everything else to HTTPS
+    redir https://{host}{uri} 308
 }
 
 pki.test.blackmesa.lan {
