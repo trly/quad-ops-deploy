@@ -46,6 +46,8 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:z
       - ca-store:/step/pki
+      - caddy-data:/data
+      - caddy-config:/config
     ports:
       - '8080:80'
       - '8443:443'
@@ -69,6 +71,8 @@ services:
 volumes:
   certificate-authority:
   ca-store:
+  caddy-data:
+  caddy-config:
 
 secrets:
   step-ca-password:
