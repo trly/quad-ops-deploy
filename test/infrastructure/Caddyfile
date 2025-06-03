@@ -1,7 +1,7 @@
 
 *.test.blackmesa.lan {
   tls travis.lyons@gmail.com {
-    ca https://pki:9000/acme/acme-blackmesa/directory
+    ca https://pki:9000/acme/acme-blackmesa-test/directory
     ca_root /step/pki/pki.test.blackmesa.lan.crt
   }
   respond "Quad-Ops Managed Local Proxy"
