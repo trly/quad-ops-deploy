@@ -13,7 +13,6 @@ services:
       DOCKER_STEPCA_INIT_ADDRESS: ":9000"
       DOCKER_STEPCA_INIT_PROVISIONER_NAME: "acme-blackmesa-test"
       DOCKER_STEPCA_INIT_ACME: "true"
-      DOCKER_STEPCA_INIT_ACME_CHALLENGES: "http-01,dns-01"
       STEPCA_LOG_LEVEL: "info"
 
     x-podman-env-secrets:
@@ -25,9 +24,9 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_HOSTNMAE: keycloak.test.blackmesa.lan
-      KC_HOSTNAME_PORT: 8443
-      KC_HOSTNAME_URL: keycloak.test.blackmesa.lan:8443
-      KC_HOSTNAME_ADMIN_URL: keycloak.test.blackmesa.lan:8443
+      KC_HOSTNAME_PORT: 443
+      KC_HOSTNAME_URL: keycloak.test.blackmesa.lan
+      KC_HOSTNAME_ADMIN_URL: keycloak.test.blackmesa.lan
       PROXY_ADDRESS_FORWARDING: "true"
     command: start-dev
     depends_on:
@@ -49,8 +48,8 @@ services:
       - caddy-data:/data
       - caddy-config:/config
     ports:
-      - '8080:80'
-      - '8443:443'
+      - '80:80'
+      - '443:443'
 
     depends_on:
       - pki
