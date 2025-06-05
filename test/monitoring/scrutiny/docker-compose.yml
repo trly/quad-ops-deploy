@@ -36,7 +36,7 @@ services:
       - SYS_RAWIO
       - SYS_ADMIN
     volumes:
-      - '/run/udev:/run/udev:ro:z'
+      - '/run/udev:/run/udev:ro,z'
     environment:
       COLLECTOR_API_ENDPOINT: 'http://scrutiny-web:8080'
       COLLECTOR_HOST_ID: 'stardust'
