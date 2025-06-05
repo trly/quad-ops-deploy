@@ -28,3 +28,6 @@ keycloak.test.blackmesa.lan {
     }
 }
 
+scrutiny.test.blackmesa.lan {
+    reverse_proxy scrutiny:8080
+}

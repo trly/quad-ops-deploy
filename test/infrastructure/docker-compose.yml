@@ -24,7 +24,7 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_HOSTNMAE: keycloak.test.blackmesa.lan
-      KC_HOSTNAME_PORT: 443
+      KC_HOSTNAME_PORT: 8443
       KC_HOSTNAME_URL: keycloak.test.blackmesa.lan
       KC_HOSTNAME_ADMIN_URL: keycloak.test.blackmesa.lan
       PROXY_ADDRESS_FORWARDING: "true"
