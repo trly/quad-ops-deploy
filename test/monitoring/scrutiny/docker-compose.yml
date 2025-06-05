@@ -1,8 +1,6 @@
 services:
   influxdb:
     image: docker.io/library/influxdb:2.2
-    ports:
-      - '8086'
     volumes:
       - 'scrutiny-influxdb:/var/lib/influxdb2'
     healthcheck:
@@ -15,8 +13,6 @@ services:
 
   web:
     image: 'ghcr.io/analogj/scrutiny:master-web'
-    ports:
-      - '8080'
     volumes:
       - 'scrutiny-config:/opt/scrutiny/config'
     environment:
