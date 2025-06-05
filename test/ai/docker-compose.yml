@@ -1,9 +1,12 @@
 services:
   ollama:
-    image: docker.io/ollama/ollama:latest
+    image: docker.io/ollama/ollama:rocm
     container_name: ollama
     volumes:
        - ollama-data:/root/.ollama
+    devices:
+      - /dev/kfd
+      - /dev/dri
     environment:
        - OLLAMA_HOST=0.0.0.0:11434
     restart: unless-stopped
