@@ -1,0 +1,37 @@
+services:
+  reverse-proxy:
+    image: ghcr.io/trly/caddy:main
+    restart: always
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:z
+      - caddy-data:/data
+      - caddy-config:/config
+    ports:
+      - '80:80'
+      - '443:443'
+    x-podman-env-secrets:
+      porkbun-api-key: PORKBUN_API_KEY
+      porkbun-api-secret-key: PORKBUN_API_SECRET_KEY
+      acme-email: ACME_EMAIL
+  kitchenowl:
+    image: docker.io/tombursch/kitchenowl:latest
+    restart: unless-stopped
+    x-podman-env-secrets:
+      kitchen-owl-jwt-secret: JWT_SECRET_KEY
+    volumes:
+      - kitchenowl_data:/data
+
+volumes:
+  kitchenowl_data:
+  caddy-data:
+  caddy-config:
+
+secrets:
+  kitchen-owl-jwt-secret:
+    external: true
+  porkbun-api-key:
+    external: true
+  porkbun-api-secret-key:
+    external: true
+  acme-email:
+    external: true

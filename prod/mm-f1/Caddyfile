@@ -1,0 +1,18 @@
+{
+	email {env.ACME_EMAIL}
+}
+
+(porkbun_tls) {
+	tls {
+		dns porkbun {
+			api_key {env.PORKBUN_API_KEY}
+			api_secret_key {env.PORKBUN_API_SECRET_KEY}
+		}
+		resolvers curitiba.ns.porkbun.com fortaleza.ns.porkbun.com maceio.ns.porkbun.com salvador.ns.porkbun.com
+	}
+}
+
+recipes.home.trly.dev {
+	reverse_proxy * kitchenowl:8080
+	import porkbun_tls
+}
