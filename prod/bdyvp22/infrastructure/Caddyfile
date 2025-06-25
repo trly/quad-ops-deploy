@@ -1,0 +1,18 @@
+{
+	email {env.ACME_EMAIL}
+}
+
+(porkbun_tls) {
+	tls {
+		dns porkbun {
+			api_key {env.PORKBUN_API_KEY}
+			api_secret_key {env.PORKBUN_API_SECRET_KEY}
+		}
+		resolvers curitiba.ns.porkbun.com fortaleza.ns.porkbun.com maceio.ns.porkbun.com salvador.ns.porkbun.com
+	}
+}
+
+home.trly.dev {
+	import porkbun_tls
+  return 200 "Welcome home!"
+}

@@ -1,0 +1,35 @@
+services:
+  reverse-proxy:
+    image: 'docker.io/library/caddy:2.10.0'
+    restart: always
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:z
+      - caddy-data:/data
+      - caddy-config:/config
+    ports:
+      - '80:80'
+      - '443:443'
+    x-podman-env-secrets:
+      porkbun-api-key: PORKBUN_API_KEY
+      porkbun-api-secret-key: PORKBUN_API_SECRET_KEY
+      acme-email: ACME_EMAIL
+
+    networks:
+      - default
+      - proxy
+
+volumes:
+  caddy-data:
+  caddy-config:
+
+secrets:
+  porkbun-api-key:
+    external: true
+  porkbun-api-secret-key:
+    external: true
+  acme-email:
+    external: true
+
+networks:
+  default:
+  proxy:
