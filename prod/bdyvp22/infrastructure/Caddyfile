@@ -12,7 +12,7 @@
 	}
 }
 
-home.trly.dev {
+photos.home.trly.dev {
 	import porkbun_tls
-	respond "home.trly.dev is online"
+  reverse_proxy localhost:8080
 }
