@@ -14,5 +14,5 @@
 
 home.trly.dev {
 	import porkbun_tls
-  respond "home.trly.dev is online"
+	respond "home.trly.dev is online"
 }
