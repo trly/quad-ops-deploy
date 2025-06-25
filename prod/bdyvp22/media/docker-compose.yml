@@ -23,7 +23,7 @@ services:
     env_file:
       - .env
     x-podman-env-secrets:
-        media-immich-db-password: DB_PASSWORD
+        immich-db-password: DB_PASSWORD
     ports:
       - '2283:2283'
     depends_on:
@@ -42,7 +42,7 @@ services:
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
-      - media-immich-model-cache:/cache
+      - immich-model-cache:/cache
     env_file:
       - .env
     restart: always
@@ -78,6 +78,6 @@ secrets:
     external: true
 
 volumes:
-  media-immich-model-cache:
-  media-immich-postgres-data:
-  media-immich-uploads:
+  immich-model-cache:
+  immich-postgres-data:
+  immich-uploads:
