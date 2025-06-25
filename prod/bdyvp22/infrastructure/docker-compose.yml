@@ -1,6 +1,6 @@
 services:
   reverse-proxy:
-    image: 'docker.io/library/caddy:2.10.0'
+    image: ghcr.io/trly/caddy:main
     restart: always
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:z
