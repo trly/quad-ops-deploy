@@ -23,7 +23,7 @@ services:
     env_file:
       - .env
     x-podman-env-secrets:
-        immich-db-password: DB_PASSWORD
+        media-immich-db-password: DB_PASSWORD
     ports:
       - '2283:2283'
     depends_on:
