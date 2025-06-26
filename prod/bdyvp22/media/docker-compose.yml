@@ -25,7 +25,7 @@ services:
       - immich-redis
       - immich-database
     networks:
-      - media-default
+      - default
       - infrastructure-proxy
     restart: always
     healthcheck:
@@ -75,6 +75,6 @@ volumes:
   immich-uploads:
 
 networks:
-  media-default:
+  default:
   infrastructure-proxy:
     external: true
