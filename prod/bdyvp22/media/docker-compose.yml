@@ -21,11 +21,12 @@ services:
       - /etc/localtime:/etc/localtime:ro
     x-podman-env-secrets:
       media-immich-db-password: DB_PASSWORD
-    ports:
-      - '2283:2283'
     depends_on:
       - immich-redis
       - immich-database
+    networks:
+      - media-default
+      - infrastructure-proxy
     restart: always
     healthcheck:
       disable: false
@@ -72,3 +73,8 @@ volumes:
   immich-model-cache:
   immich-postgres-data:
   immich-uploads:
+
+networks:
+  media-default:
+  infrastructure-proxy:
+    external: true
