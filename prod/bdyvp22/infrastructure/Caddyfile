@@ -14,5 +14,5 @@
 
 photos.home.trly.dev {
 	import porkbun_tls
-	reverse_proxy localhost:2283
+	reverse_proxy immich-server:2283
 }
