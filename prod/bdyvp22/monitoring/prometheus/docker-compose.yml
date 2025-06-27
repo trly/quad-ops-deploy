@@ -24,6 +24,12 @@ services:
       - default
       - infrastructure-proxy
 
+  perses:
+    image: docker.io/persesdev/perses:v0.51.0
+    networks:
+      - default
+      - infrastructure-proxy
+
 networks:
   default:
   infrastructure-proxy:
