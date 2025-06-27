@@ -19,6 +19,7 @@ services:
     image: docker.io/prom/prometheus:v3.4.2
     volumes:
       - prometheus-data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro,z
     networks:
       - default
       - infrastructure-proxy
