@@ -1,6 +1,6 @@
 services:
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:$VERSION
+    image: ghcr.io/google/cadvisor:v0.53.0
     volumes:
       - '/:/rootfs:ro,z'
       - '/var/run:/var/run:ro,z'
