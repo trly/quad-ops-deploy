@@ -16,7 +16,7 @@ services:
     ports:
       - "8080:8080"
   server:
-    image: quay.io/prom/prometheus:v3.4.2
+    image: quay.io/prom/prometheus:v3.4.1
     volumes:
       - prometheus-data:/prometheus
     networks:
