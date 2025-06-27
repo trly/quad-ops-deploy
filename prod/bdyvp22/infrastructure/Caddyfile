@@ -29,5 +29,5 @@ prometheus.home.trly.dev {
 
 perses.home.trly.dev {
 	import porkbun_tls
-	reverse_proxy perses-server:8080
+	reverse_proxy prometheus-perses:8080
 }
