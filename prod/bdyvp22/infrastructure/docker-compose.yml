@@ -3,7 +3,7 @@ services:
     image: ghcr.io/trly/caddy:main
     restart: always
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:z
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
     ports:

@@ -2,10 +2,11 @@ services:
   cadvisor:
     image: ghcr.io/google/cadvisor:v0.53.0
     volumes:
-      - '/var/run:/var/run:ro,z'
-      - '/sys:/sys:ro,z'
-      - '/var/lib/containers:/var/lib/containers:ro,z'
-      - '/dev/disk:/dev/disk:ro,z'
+      - '/:/rootfs:ro'
+      - '/var/run:/var/run:ro'
+      - '/sys:/sys:ro'
+      - '/var/lib/containers:/var/lib/containers:ro'
+      - '/dev/disk:/dev/disk:ro'
     privileged: true
     devices:
       - /dev/kmsg
