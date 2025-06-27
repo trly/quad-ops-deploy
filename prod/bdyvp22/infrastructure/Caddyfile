@@ -16,3 +16,8 @@ photos.home.trly.dev {
 	import porkbun_tls
 	reverse_proxy immich-server:2283
 }
+
+scrutiny.home.trly.dev {
+	import porkbun_tls
+	reverse_proxy scrutiny-web:8080
+}
