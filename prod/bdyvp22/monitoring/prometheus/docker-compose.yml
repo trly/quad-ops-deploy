@@ -1,0 +1,16 @@
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:$VERSION
+    volumes:
+      - '/:/rootfs:ro,z'
+      - '/var/run:/var/run:ro,z'
+      - '/sys:/sys:ro,z'
+      - 'var/lib/containers:/var/lib/containers:ro,z'
+      - '/dev/disk:/dev/disk:ro,z'
+    privileged: true
+    devices:
+      - /dev/kmsg
+    networks:
+      - default
+    ports:
+      - "8080:8080"
