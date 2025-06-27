@@ -21,3 +21,8 @@ scrutiny.home.trly.dev {
 	import porkbun_tls
 	reverse_proxy scrutiny-web:8080
 }
+
+prometheus.home.trly.dev {
+	import porkbun_tls
+	reverse_proxy prometheus-server:9090
+}

@@ -12,5 +12,21 @@ services:
       - /dev/kmsg
     networks:
       - default
+      - infrastructure-proxy
     ports:
       - "8080:8080"
+  server:
+    image: quay.io/prom/prometheus:v3.4.2
+    volumes:
+      - prometheus-data:/prometheus
+    networks:
+      - default
+      - infrastructure-proxy
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true
+
+volumes:
+  prometheus-data:
