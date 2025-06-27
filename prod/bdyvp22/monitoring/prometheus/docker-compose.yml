@@ -5,7 +5,7 @@ services:
       - '/:/rootfs:ro,z'
       - '/var/run:/var/run:ro,z'
       - '/sys:/sys:ro,z'
-      - 'var/lib/containers:/var/lib/containers:ro,z'
+      - '/var/lib/containers:/var/lib/containers:ro,z'
       - '/dev/disk:/dev/disk:ro,z'
     privileged: true
     devices:
