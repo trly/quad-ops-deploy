@@ -2,7 +2,6 @@ services:
   cadvisor:
     image: ghcr.io/google/cadvisor:v0.53.0
     volumes:
-      - '/:/rootfs:ro,z'
       - '/var/run:/var/run:ro,z'
       - '/sys:/sys:ro,z'
       - '/var/lib/containers:/var/lib/containers:ro,z'
