@@ -31,3 +31,8 @@ perses.home.trly.dev {
 	import porkbun_tls
 	reverse_proxy prometheus-perses:8080
 }
+
+git.home.trly.dev {
+	import porkbun_tls
+	reverse_proxy devops-gogs:3000
+}
