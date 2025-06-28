@@ -29,6 +29,8 @@ services:
     networks:
       - default
       - infrastructure-proxy
+    volumes:
+      - perses-data:/perses
 
 networks:
   default:
@@ -37,3 +39,4 @@ networks:
 
 volumes:
   prometheus-data:
+  perses-data:
