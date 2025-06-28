@@ -9,6 +9,10 @@ scrape_configs:
   - targets:
     - cadvisor:8080
 
+- job_name: node
+  static_configs:
+  - targets: ['bdyvp22:9100']
+
 - job_name: immich_api
   static_configs:
   - targets: ['media-immich-server:8081']
