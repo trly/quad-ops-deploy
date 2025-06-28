@@ -6,12 +6,12 @@ services:
       - gogs-data:/data
     networks:
       - default
-      - proxy
+      - infrastructure-proxy
 
 volumes:
   gogs-data:
 
 networks:
   default:
-  proxy:
+  infrastructure-proxy:
     external: true
