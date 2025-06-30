@@ -2,7 +2,7 @@
 	email {env.ACME_EMAIL}
 }
 
-(porkbun_tls) {
+*.home.trly.dev, home.trly.dev {
 	tls {
 		dns porkbun {
 			api_key {env.PORKBUN_API_KEY}
@@ -10,29 +10,29 @@
 		}
 		resolvers curitiba.ns.porkbun.com fortaleza.ns.porkbun.com maceio.ns.porkbun.com salvador.ns.porkbun.com
 	}
-}
 
-photos.home.trly.dev {
-	import porkbun_tls
-	reverse_proxy immich-server:2283
-}
+	@immich host photos.home.trly.dev
+	handle @immich {
+		reverse_proxy immich-server:2283
+	}
 
-scrutiny.home.trly.dev {
-	import porkbun_tls
-	reverse_proxy scrutiny-web:8080
-}
+	@scrutiny host scrutiny.home.trly.dev
+	handle @scrutiny {
+		reverse_proxy scrutiny-web:8080
+	}
 
-prometheus.home.trly.dev {
-	import porkbun_tls
-	reverse_proxy prometheus-server:9090
-}
+	@prometheus host prometheus.home.trly.dev
+	handle @prometheus {
+		reverse_proxy prometheus-server:9090
+	}
 
-perses.home.trly.dev {
-	import porkbun_tls
-	reverse_proxy prometheus-perses:8080
-}
+	@perses host perses.home.trly.dev
+	handle @perses {
+		reverse_proxy prometheus-perses:8080
+	}
 
-git.home.trly.dev {
-	import porkbun_tls
-	reverse_proxy devops-gogs:3000
+	@gogs host git.home.trly.dev
+	handle @gogs {
+		reverse_proxy devops-gogs:3000
+	}
 }
