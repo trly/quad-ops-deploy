@@ -2,8 +2,6 @@
 
 ### Infrastructure
 
-#### pre-create secrets for porkbun api key and api secret key
-
 ``` bash
 set +o history
 export PORKBUN_API_KEY=your-porkbun-api-key
