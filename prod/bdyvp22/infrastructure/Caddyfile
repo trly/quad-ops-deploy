@@ -38,12 +38,11 @@
 
 	@unifi host unifi.home.trly.dev
 	handle @unifi {
-		reverse_proxy /inform infrastructure-unifi-network-application:8080
 		reverse_proxy infrastructure-unifi-network-application:8443 {
 			transport http {
 				tls
 				tls_insecure_skip_verify
-		}
+			}
 		}
 	}
 }
