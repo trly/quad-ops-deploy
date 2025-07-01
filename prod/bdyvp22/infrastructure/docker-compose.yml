@@ -54,7 +54,7 @@ services:
       - unifi
     volumes:
       - unifi-db-data:/data/db
-      - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+      - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
     restart: unless-stopped
 
 volumes:
