@@ -66,6 +66,10 @@ secrets:
     external: true
   acme-email:
     external: true
+  unifi-mongo-password:
+    external: true
+  unifi-mongo-root-password:
+    external: true
 
 networks:
   default:
