@@ -34,6 +34,9 @@ services:
       - MONGO_TLS= #optional
     x-podman-env-secrets:
       unifi-mongo-password: MONGO_PASS
+    networks:
+      - proxy
+      - unifi
     volumes:
       - unifi-config:/config
     restart: unless-stopped
@@ -48,6 +51,8 @@ services:
     x-podman-env-secrets:
       unifi-mongo-root-password: MONGO_INITDB_ROOT_PASSWORD
       unifi-mongo-password: MONGO_PASS
+    networks:
+      - unifi
     volumes:
       - unifi-db-data:/data/db
       - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
