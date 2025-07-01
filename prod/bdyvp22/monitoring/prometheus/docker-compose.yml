@@ -13,8 +13,6 @@ services:
     networks:
       - default
       - infrastructure-proxy
-    ports:
-      - "8080:8080"
   server:
     image: docker.io/prom/prometheus:v3.4.2
     volumes:
