@@ -42,6 +42,8 @@ services:
       - 5514:5514/udp #optional
     x-podman-env-secrets:
       unifi-mongo-password: MONGO_PASS
+    depends_on:
+      - unifi-db
     networks:
       - proxy
       - unifi
@@ -66,11 +68,45 @@ services:
       - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
     restart: unless-stopped
 
+  keycloak:
+    build:
+      dockerfile: keycloak.Dockerfile
+    image: quay.io/keycloak/keycloak:26.2.5 as builder
+    environment:
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://infrastructure-keycloak-db:5432/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_HOSTNAME=sso.home.trly.dev
+    x-podman-env-secrets:
+      kc_db_password: KC_DB_PASSWORD
+      kc_admin_user: KC_BOOTSTRAP_ADMIN_USERNAME
+      kc_admin_password: KC_BOOTSTRAP_ADMIN_PASSWORD
+    depends_on:
+      - keycloak-db
+    networks:
+      - proxy
+      - keycloak
+    restart: unless-stopped
+
+  keycloak-db:
+    image: docker.io/library/postgres:17
+    environment:
+      - POSTGRES_USER=keycloak
+      - POSTGRES_DB=keycloak
+    x-podman-env-secrets:
+      kc_db_password: POSTGRES_PASSWORD
+    networks:
+      - keycloak
+    volumes:
+      - keycloak-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
 volumes:
   caddy-data:
   caddy-config:
   unifi-db-data:
   unifi-config:
+  keycloak-db-data:
 
 secrets:
   porkbun-api-key:
@@ -83,9 +119,14 @@ secrets:
     external: true
   unifi-mongo-root-password:
     external: true
-
+  kc_admin_user:
+    external: true
+  kc_admin_password:
+    external: true
+  kc_db_password:
+    external: true
 networks:
   default:
   proxy:
+  keycloak:
   unifi:
-

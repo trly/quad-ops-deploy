@@ -45,4 +45,9 @@
 			}
 		}
 	}
+
+	@sso host sso.home.trly.dev
+	handle @sso {
+		reverse_proxy infrastructure-keycloak:8080
+	}
 }
