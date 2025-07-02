@@ -69,14 +69,13 @@ services:
     restart: unless-stopped
 
   keycloak:
-    build:
-      dockerfile: keycloak.Dockerfile
-    image: quay.io/keycloak/keycloak:26.2.5 as builder
+    image: quay.io/keycloak/keycloak:26.2.5
     environment:
       - KC_DB=postgres
       - KC_DB_URL=jdbc:postgresql://infrastructure-keycloak-db:5432/keycloak
       - KC_DB_USERNAME=keycloak
       - KC_HOSTNAME=sso.home.trly.dev
+    command: ["start", "--db=postgres"]
     x-podman-env-secrets:
       kc-db-password: KC_DB_PASSWORD
       kc-admin-user: KC_BOOTSTRAP_ADMIN_USERNAME
