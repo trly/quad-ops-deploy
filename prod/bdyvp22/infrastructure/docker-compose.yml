@@ -68,11 +68,90 @@ services:
       - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
     restart: unless-stopped
 
+  authentik-db:
+    image: docker.io/library/postgres:16-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - authentik-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: authentik
+      POSTGRES_DB: authentik
+    x-podman-env-secrets:
+      authentik-postgres-password: POSTGRES_PASSWORD
+
+  authentik-redis:
+    image: docker.io/library/redis:alpine
+    command: --save 60 1 --loglevel warning
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
+    volumes:
+      - authentik-redis-data:/data
+
+  authentik-server:
+    image: ghcr.io/goauthentik/server:2025.6.3
+    restart: unless-stopped
+    command: server
+    environment:
+      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_POSTGRESQL__HOST: infrastructure-authentik-db
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+    x-podman-env-secrets:
+      authentik-postgres-password: AUTHENTIK_POSTGRESQL__PASSWORD
+      authentik-secret-key: AUTHENTIK_SECRET_KEY
+    volumes:
+      - authentik-media:/media
+      - authentik-certs:/certs
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  authentik-worker:
+    image: ghcr.io/goauthentik/server:2025.6.3
+    restart: unless-stopped
+    command: worker
+    environment:
+      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_POSTGRESQL__HOST: infrastructure-authentik-db
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+    x-podman-env-secrets:
+      authentik-postgres-password: AUTHENTIK_POSTGRESQL__PASSWORD
+      authentik-secret-key: AUTHENTIK_SECRET_KEY
+    user: root
+    volumes:
+      - authentik-media:/media
+      - authentik-certs:/certs
+      - authentik-templates:/templates
+    depends_on:
+      authentik-db:
+        condition: service_healthy
+      authentik-redis:
+        condition: service_healthy
+
 volumes:
   caddy-data:
   caddy-config:
   unifi-db-data:
   unifi-config:
+  authentik-db-data:
+  authentik-redis-data:
+  authentik-media:
+  authentik-certs:
+  authentik-templates:
 
 secrets:
   porkbun-api-key:
@@ -85,6 +164,11 @@ secrets:
     external: true
   unifi-mongo-root-password:
     external: true
+  authentik-secret-key:
+    external: true
+  authentik-postgres-password:
+    external: true
+
 networks:
   default:
   proxy:
