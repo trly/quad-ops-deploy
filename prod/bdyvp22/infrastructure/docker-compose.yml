@@ -110,6 +110,9 @@ services:
     x-podman-env-secrets:
       authentik-postgres-password: AUTHENTIK_POSTGRESQL__PASSWORD
       authentik-secret-key: AUTHENTIK_SECRET_KEY
+    networks:
+      - default
+      - proxy
     volumes:
       - authentik-media:/media
       - authentik-certs:/certs

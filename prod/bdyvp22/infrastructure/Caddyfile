@@ -48,6 +48,6 @@
 
 	@sso host sso.home.trly.dev
 	handle @sso {
-		reverse_proxy infrastructure-keycloak:8080
+		reverse_proxy infrastructure-authentik-server:9000
 	}
 }
