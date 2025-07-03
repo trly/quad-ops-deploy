@@ -68,46 +68,11 @@ services:
       - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
     restart: unless-stopped
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:26.2.5
-    environment:
-      - KC_DB=postgres
-      - KC_DB_URL=jdbc:postgresql://infrastructure-keycloak-db:5432/keycloak
-      - KC_DB_USERNAME=keycloak
-      - KC_HOSTNAME=localhost
-      - KC_HTTP_ENABLED=true
-      - KC_PROXY_HEADERS=forwarded
-    command: ["start"]
-    x-podman-env-secrets:
-      kc-db-password: KC_DB_PASSWORD
-      kc-admin-user: KC_BOOTSTRAP_ADMIN_USERNAME
-      kc-admin-password: KC_BOOTSTRAP_ADMIN_PASSWORD
-    depends_on:
-      - keycloak-db
-    networks:
-      - proxy
-      - keycloak
-    restart: unless-stopped
-
-  keycloak-db:
-    image: docker.io/library/postgres:17
-    environment:
-      - POSTGRES_USER=keycloak
-      - POSTGRES_DB=keycloak
-    x-podman-env-secrets:
-      kc-db-password: POSTGRES_PASSWORD
-    networks:
-      - keycloak
-    volumes:
-      - keycloak-db-data:/var/lib/postgresql/data
-    restart: unless-stopped
-
 volumes:
   caddy-data:
   caddy-config:
   unifi-db-data:
   unifi-config:
-  keycloak-db-data:
 
 secrets:
   porkbun-api-key:
@@ -120,14 +85,7 @@ secrets:
     external: true
   unifi-mongo-root-password:
     external: true
-  kc-admin-user:
-    external: true
-  kc-admin-password:
-    external: true
-  kc-db-password:
-    external: true
 networks:
   default:
   proxy:
-  keycloak:
   unifi:
