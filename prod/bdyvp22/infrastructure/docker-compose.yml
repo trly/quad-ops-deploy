@@ -87,7 +87,7 @@ services:
 
   authentik-redis:
     image: docker.io/library/redis:alpine
-    command: --save 60 1 --loglevel warning
+    command: ["--save", "60", "1", "--loglevel", "warning"]
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
@@ -95,6 +95,8 @@ services:
       interval: 30s
       retries: 5
       timeout: 3s
+    networks:
+      - authentik
     volumes:
       - authentik-redis-data:/data
 
@@ -111,7 +113,7 @@ services:
       authentik-postgres-password: AUTHENTIK_POSTGRESQL__PASSWORD
       authentik-secret-key: AUTHENTIK_SECRET_KEY
     networks:
-      - default
+      - authentik
       - proxy
     volumes:
       - authentik-media:/media
@@ -134,6 +136,8 @@ services:
       - authentik-media:/media
       - authentik-certs:/certs
       - authentik-templates:/templates
+    networks:
+      - authentik
 
 volumes:
   caddy-data:
@@ -166,3 +170,4 @@ networks:
   default:
   proxy:
   unifi:
+  authentik:
