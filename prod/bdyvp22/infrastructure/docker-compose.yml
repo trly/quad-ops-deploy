@@ -114,9 +114,9 @@ services:
       - authentik-media:/media
       - authentik-certs:/certs
     depends_on:
-      postgresql:
+      authentik-db:
         condition: service_healthy
-      redis:
+      authentik-redis:
         condition: service_healthy
 
   authentik-worker:
