@@ -77,6 +77,8 @@ services:
       interval: 30s
       retries: 5
       timeout: 5s
+    networks:
+      - authentik
     volumes:
       - authentik-db-data:/var/lib/postgresql/data
     environment:
