@@ -103,7 +103,7 @@ services:
     restart: unless-stopped
     command: server
     environment:
-      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_REDIS__HOST: infrastructure-authentik-redis
       AUTHENTIK_POSTGRESQL__HOST: infrastructure-authentik-db
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
@@ -122,7 +122,7 @@ services:
     restart: unless-stopped
     command: worker
     environment:
-      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_REDIS__HOST: infrastructure-authentik-redis
       AUTHENTIK_POSTGRESQL__HOST: infrastructure-authentik-db
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
