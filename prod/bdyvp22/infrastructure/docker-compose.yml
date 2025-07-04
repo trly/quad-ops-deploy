@@ -81,7 +81,7 @@ services:
       - authelia-storage-encryption-key
     volumes:
       - authelia-data:/config
-      - ./authelia/configuration.yml:/config/configuration.yml:ro,z
+      - ./authelia/configuration.yml:/config/configuration.yml:z
     networks:
       - authelia
       - proxy
