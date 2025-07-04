@@ -6,3 +6,5 @@ access_control:
 storage:
   local:
     path: '/config/db.sqlite3'
+notifier:
+  disable_startup_check: true
