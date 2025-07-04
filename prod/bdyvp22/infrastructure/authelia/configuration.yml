@@ -8,3 +8,41 @@ storage:
     path: '/config/db.sqlite3'
 notifier:
   disable_startup_check: true
+authentication_backend:
+  file:
+    path: '/config/users.yml'
+    watch: false
+    search:
+      email: false
+      case_insensitive: false
+    extra_attributes:
+      extra_example:
+        multi_valued: false
+        value_type: 'string'
+    password:
+      algorithm: 'argon2'
+      argon2:
+        variant: 'argon2id'
+        iterations: 3
+        memory: 65536
+        parallelism: 4
+        key_length: 32
+        salt_length: 16
+      scrypt:
+        variant: 'scrypt'
+        iterations: 16
+        block_size: 8
+        parallelism: 1
+        key_length: 32
+        salt_length: 16
+      pbkdf2:
+        variant: 'sha512'
+        iterations: 310000
+        salt_length: 16
+      sha2crypt:
+        variant: 'sha512'
+        iterations: 50000
+        salt_length: 16
+      bcrypt:
+        variant: 'standard'
+        cost: 12
