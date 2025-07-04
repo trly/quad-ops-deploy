@@ -46,3 +46,18 @@ authentication_backend:
       bcrypt:
         variant: 'standard'
         cost: 12
+session:
+  name: 'authelia_session'
+  same_site: 'lax'
+  inactivity: '5m'
+  expiration: '1h'
+  remember_me: '1M'
+  cookies:
+    - domain: 'home.trly.dev'
+      authelia_url: 'https://auth.home.trly.dev'
+      default_redirection_url: 'https://www.home.trly.dev'
+      name: 'authelia_session'
+      same_site: 'lax'
+      inactivity: '5m'
+      expiration: '1h'
+      remember_me: '1d'
