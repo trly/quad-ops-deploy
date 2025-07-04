@@ -1,0 +1,8 @@
+access_control:
+  default_policy: deny
+  rules:
+    - domain: '*.home.trly.dev'
+      policy: one_factor
+storage:
+  local:
+    path: '/config/db.sqlite3'
