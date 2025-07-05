@@ -68,24 +68,6 @@ services:
       - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
     restart: unless-stopped
 
-  authelia:
-    image: ghcr.io/authelia/authelia:4.39.4
-    restart: unless-stopped
-    environment:
-      AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE: /run/secrets/authelia-jwt-secret
-      AUTHELIA_SESSION_SECRET_FILE: /run/secrets/authelia-session-secret
-      AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /run/secrets/authelia-storage-encryption-key
-      AUTHELIA_AUTHENTICATION_BACKEND_FILE_PATH: /config/users.yml
-    secrets:
-      - authelia-jwt-secret
-      - authelia-session-secret
-      - authelia-storage-encryption-key
-    volumes:
-      - authelia-data:/config
-    networks:
-      - authelia
-      - proxy
-
 volumes:
   caddy-data:
   caddy-config:
