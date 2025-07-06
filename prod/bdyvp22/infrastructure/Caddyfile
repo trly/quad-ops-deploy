@@ -50,4 +50,10 @@
 	handle @sso {
 		reverse_proxy infrastructure-authelia:9091
 	}
+
+	@dozzle host dozzle.home.trly.dev
+	handle @dozzle {
+		reverse_proxy dozzle-app:8080
+	}
 }
+
