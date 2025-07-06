@@ -53,7 +53,7 @@
 
 	@dozzle host dozzle.home.trly.dev
 	handle @dozzle {
-		reverse_proxy dozzle-app:8080
+		reverse_proxy dozzle-web:8080
 	}
 }
 
