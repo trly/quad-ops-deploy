@@ -5,6 +5,8 @@ services:
       - /run/podman/podman.sock:/var/run/docker.sock:ro,z
     networks:
       - infrastructure-proxy
+    environment:
+      - DOZZLE_TIMEOUT=10s
 networks:
   infrastructure-proxy:
     external: true
