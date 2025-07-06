@@ -1,9 +1,10 @@
-app:
-  image: docker.io/amir20/dozzle:latest
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-  networks:
-    - infrastructure-proxy
+services:
+  web:
+    image: docker.io/amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - infrastructure-proxy
 networks:
   infrastructure-proxy:
     external: true
