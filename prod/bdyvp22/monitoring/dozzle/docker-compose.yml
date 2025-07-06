@@ -2,7 +2,7 @@ services:
   web:
     image: docker.io/amir20/dozzle:latest
     volumes:
-      - /var/run/podman/podman.sock:/var/run/docker.sock:ro,z
+      - /run/podman/podman.sock:/var/run/docker.sock:ro,z
     networks:
       - infrastructure-proxy
 networks:
