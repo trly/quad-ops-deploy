@@ -21,16 +21,6 @@
 		reverse_proxy scrutiny-web:8080
 	}
 
-	@prometheus host prometheus.home.trly.dev
-	handle @prometheus {
-		reverse_proxy prometheus-server:9090
-	}
-
-	@perses host perses.home.trly.dev
-	handle @perses {
-		reverse_proxy prometheus-perses:8080
-	}
-
 	@gogs host git.home.trly.dev
 	handle @gogs {
 		reverse_proxy devops-gogs:3000
@@ -55,5 +45,9 @@
 	handle @dozzle {
 		reverse_proxy dozzle-web:8080
 	}
-}
 
+	@netdata host netdata.home.trly.dev
+	handle @netdata {
+		reverse_proxy monitoring-netdata:19999
+	}
+}
