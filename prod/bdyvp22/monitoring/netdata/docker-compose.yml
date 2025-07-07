@@ -1,7 +1,6 @@
 services:
-  netdata:
+  app:
     image: docker.io/netdata/netdata:latest
-    container_name: monitoring-netdata
     pid: host
     network_mode: host
     restart: unless-stopped
