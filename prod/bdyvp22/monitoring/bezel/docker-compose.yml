@@ -1,0 +1,32 @@
+services:
+  hub:
+    image: docker.io/henrygd/beszel:latest
+    restart: unless-stopped
+    networks:
+      - default
+      - infrastructure-proxy
+    volumes:
+      - beszel-data:/beszel_data
+      - beszel-socket:/beszel_socket
+
+  # agent:
+  #   image: docker.io/henrygd/beszel-agent:latest
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   privileged: true
+  #   volumes:
+  #     - beszel-socket:/beszel_socket
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro,z
+  #   environment:
+  #     LISTEN: /beszel_socket/beszel.sock
+  #     # Do not remove quotes around the key
+  #     KEY: 'UPDATE WITH YOUR PUBLIC KEY (copy from "Add system" dialog)'
+
+volumes:
+  beszel-data:
+  beszel-socket:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true
