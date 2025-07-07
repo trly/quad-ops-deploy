@@ -17,8 +17,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro,z
       - beszel-socket:/beszel_socket
-      # monitor other disks / partitions by mounting a folder in /extra-filesystems
-      # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
     environment:
       LISTEN: beszel-socket/beszel.sock
       KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0nf/qweHVef91/u/8MvRcu99ZzCZiTuCx88xzmVwmF"
