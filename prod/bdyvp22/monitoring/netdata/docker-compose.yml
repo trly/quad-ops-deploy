@@ -30,4 +30,4 @@ volumes:
   netdatalib:
   netdatacache:
 
-networks: []
+networks: {}
