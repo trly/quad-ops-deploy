@@ -9,8 +9,6 @@ services:
       - SYS_ADMIN
     security_opt:
       - apparmor:unconfined
-    networks:
-      - infrastructure-proxy
     privileged: true
     volumes:
       - netdataconfig:/etc/netdata
@@ -32,6 +30,4 @@ volumes:
   netdatalib:
   netdatacache:
 
-networks:
-  infrastructure-proxy:
-    external: true
+networks: []
