@@ -29,3 +29,6 @@ volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
+
+networks:
+  default:
