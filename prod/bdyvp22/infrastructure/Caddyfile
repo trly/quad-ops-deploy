@@ -51,8 +51,8 @@
 		reverse_proxy netdata-app:19999
 	}
 
-	@bezel host bezel.home.trly.dev
-	handle @bezel {
-		reverse_proxy bezel-hub:8090
+	@beszel host beszel.home.trly.dev
+	handle @beszel {
+		reverse_proxy beszel-hub:8090
 	}
 }
