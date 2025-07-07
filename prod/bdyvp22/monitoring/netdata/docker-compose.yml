@@ -2,7 +2,8 @@ services:
   app:
     image: docker.io/netdata/netdata:latest
     pid: host
-    network_mode: host
+    networks:
+      - host
     restart: unless-stopped
     cap_add:
       - SYS_PTRACE
