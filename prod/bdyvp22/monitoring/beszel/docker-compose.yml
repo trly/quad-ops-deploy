@@ -14,8 +14,7 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro,z
-      - beszel-socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     privileged: true
 
 volumes:
