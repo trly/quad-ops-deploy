@@ -17,6 +17,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro,z
       - beszel-socket:/beszel_socket
+    privileged: true
 
 volumes:
   beszel-data:
