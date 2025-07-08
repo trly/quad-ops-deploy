@@ -18,8 +18,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro,z
       - beszel-socket:/beszel_socket
     environment:
-      BESZEL_AGENT_LISTEN: /beszel-socket/beszel.sock
-      BESZEL_AGENT_KEY: |
+      LISTEN: /beszel-socket/beszel.sock
+      KEY: |
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDXvinumuet4oLwYk7OrufVUrfoWjeFRyB+WQfZNhG27"
 
 volumes:
