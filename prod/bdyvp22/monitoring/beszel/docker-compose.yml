@@ -12,8 +12,7 @@ services:
   agent:
     image: docker.io/henrygd/beszel-agent
     restart: unless-stopped
-    networks:
-      - default
+    network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro,z
       - beszel-socket:/beszel_socket
