@@ -1,6 +1,6 @@
 services:
   web:
-    image: miniflux/miniflux:latest
+    image: docker.io/miniflux/miniflux:latest
     depends_on:
       db:
         condition: service_healthy
@@ -12,7 +12,7 @@ services:
       - default
       - infrastructure-proxy
   db:
-    image: postgres:17-alpine
+    image: docker.io/library/postgres:17-alpine
     environment:
       - POSTGRES_USER=miniflux
       - POSTGRES_DB=miniflux
