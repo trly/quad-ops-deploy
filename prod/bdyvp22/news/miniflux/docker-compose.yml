@@ -19,7 +19,7 @@ services:
     x-podman-env-secrets:
       miniflux-db-password: POSTGRES_PASSWORD
     volumes:
-      - miniflux-db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "miniflux"]
       interval: 10s
@@ -28,7 +28,7 @@ services:
       - default
 
 volumes:
-  miniflux-db-data:
+  db-data:
 
 networks:
   default:
