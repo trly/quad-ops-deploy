@@ -1,0 +1,43 @@
+services:
+  web:
+    image: miniflux/miniflux:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - RUN_MIGRATIONS=1
+    x-podman-env-secrets:
+      miniflux-db-url: DATABASE_URL
+    networks:
+      - default
+      - infrastructure-proxy
+  db:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=miniflux
+      - POSTGRES_DB=miniflux
+    x-podman-env-secrets:
+      miniflux-db-password: POSTGRES_PASSWORD
+    volumes:
+      - miniflux-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "miniflux"]
+      interval: 10s
+      start_period: 30s
+    networks:
+      - default
+
+volumes:
+  miniflux-db-data:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true
+
+secrets:
+  miniflux-db-password:
+    external: true
+  miniflux-db-url:
+    external: true
+

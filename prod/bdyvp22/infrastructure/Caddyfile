@@ -55,4 +55,9 @@
 	handle @beszel {
 		reverse_proxy beszel-hub:8090
 	}
+
+	@rss host rss.home.trly.dev
+	handle @rss {
+		reverse_proxy miniflux-web:8080
+	}
 }
