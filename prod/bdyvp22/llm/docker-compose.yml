@@ -1,13 +1,8 @@
 services:
-  api:
-    image: docker.io/localai/localai:latest-aio-cpu
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
-      interval: 1m
-      timeout: 20m
-      retries: 5
+  ollama:
+    image: docker.io/ollama/ollama:latest
     volumes:
-      - models:/models:cached
+      - ollama-data:/root/.ollama
     networks:
       - default
   open-webui:
@@ -15,15 +10,13 @@ services:
     container_name: open-webui
     volumes:
       - open-webui:/app/backend/data
-    depends_on:
-      - api
     restart: unless-stopped
     networks:
       - infrastructure-proxy
       - default
 
 volumes:
-  models:
+  ollama-data:
   open-webui:
 
 networks:
