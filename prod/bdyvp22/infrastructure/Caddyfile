@@ -46,9 +46,9 @@
 		reverse_proxy dozzle-web:8080
 	}
 
-	@localai host localai.home.trly.dev
-	handle @localai {
-		reverse_proxy localai-open-webui:8080
+	@ai host ai.home.trly.dev
+	handle @ai {
+		reverse_proxy llm-open-webui:8080
 	}
 
 	@beszel host beszel.home.trly.dev
