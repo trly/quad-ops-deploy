@@ -46,9 +46,9 @@
 		reverse_proxy dozzle-web:8080
 	}
 
-	@netdata host netdata.home.trly.dev
-	handle @netdata {
-		reverse_proxy netdata-app:19999
+	@localai host localai.home.trly.dev
+	handle @localai {
+		reverse_proxy localai-api:8080
 	}
 
 	@beszel host beszel.home.trly.dev
