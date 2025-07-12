@@ -10,6 +10,12 @@ services:
       - DEBUG=true
     volumes:
       - models:/models:cached
+    networks:
+      - infrastructure-proxy
 
 volumes:
   models:
+
+networks:
+  infrastructure-proxy:
+    external: true
