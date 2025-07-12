@@ -6,16 +6,27 @@ services:
       interval: 1m
       timeout: 20m
       retries: 5
-    environment:
-      - DEBUG=true
     volumes:
       - models:/models:cached
     networks:
+      - default
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.6.15
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
       - infrastructure-proxy
+      - default
 
 volumes:
   models:
+  open-webui:
 
 networks:
+  default:
   infrastructure-proxy:
     external: true

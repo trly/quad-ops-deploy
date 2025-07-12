@@ -48,7 +48,7 @@
 
 	@localai host localai.home.trly.dev
 	handle @localai {
-		reverse_proxy localai-api:8080
+		reverse_proxy localai-open-webui:8080
 	}
 
 	@beszel host beszel.home.trly.dev
