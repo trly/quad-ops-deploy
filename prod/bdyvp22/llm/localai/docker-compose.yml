@@ -1,6 +1,6 @@
 services:
   api:
-    image: localai/localai:latest-aio-cpu
+    image: docker.io/localai/localai:latest-aio-cpu
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
       interval: 1m
