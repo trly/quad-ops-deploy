@@ -8,7 +8,6 @@ services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:v0.6.15
     environment:
-      ROOT_PATH: "ui"
       OLLAMA_BASE_URL: "http://llm-ollama:11434"
     container_name: open-webui
     volumes:
