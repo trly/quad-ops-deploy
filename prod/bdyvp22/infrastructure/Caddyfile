@@ -48,7 +48,11 @@
 
 	@ai host ai.home.trly.dev
 	handle @ai {
-		reverse_proxy llm-open-webui:8080
+    reverse_proxy llm-ollama:11434
+
+    handle_path /ui {
+        reverse_proxy llm-open-webui:8080
+    }
 	}
 
 	@beszel host beszel.home.trly.dev

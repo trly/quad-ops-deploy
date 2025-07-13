@@ -4,7 +4,7 @@ services:
     volumes:
       - ollama-data:/root/.ollama
     networks:
-      - default
+      - infrastructure-proxy
   open-webui:
     image: ghcr.io/open-webui/open-webui:v0.6.15
     container_name: open-webui
@@ -13,13 +13,11 @@ services:
     restart: unless-stopped
     networks:
       - infrastructure-proxy
-      - default
 
 volumes:
   ollama-data:
   open-webui:
 
 networks:
-  default:
   infrastructure-proxy:
     external: true
