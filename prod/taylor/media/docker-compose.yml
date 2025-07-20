@@ -18,7 +18,7 @@ services:
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/usr/src/app/upload:z
-      - /mnt/immich/photoprism-library:/mnt/media/photoprism:z
+      - /mnt/immich/photoprism-library/originals:/mnt/media/photoprism:z
       - /etc/localtime:/etc/localtime:ro
     x-podman-env-secrets:
       media-immich-db-password: DB_PASSWORD
