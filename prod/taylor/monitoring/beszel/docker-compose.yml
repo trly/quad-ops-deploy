@@ -1,0 +1,28 @@
+services:
+  hub:
+    image: docker.io/henrygd/beszel:latest
+    restart: unless-stopped
+    networks:
+      - default
+      - infrastructure-proxy
+    volumes:
+      - beszel-data:/beszel_data
+      - beszel-socket:/beszel_socket
+
+  agent:
+    image: docker.io/henrygd/beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    volumes:
+      - /run/podman/podman.sock:/var/run/docker.sock:ro
+      - beszel-socket:/var/lib/beszel-agent
+
+volumes:
+  beszel-data:
+  beszel-socket:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true

@@ -1,0 +1,79 @@
+services:
+  influxdb:
+    image: docker.io/library/influxdb:2.2
+    volumes:
+      - 'scrutiny-influxdb:/var/lib/influxdb2'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/health"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+    networks:
+      - default
+
+  web:
+    image: 'ghcr.io/analogj/scrutiny:master-web'
+    volumes:
+      - 'scrutiny-config:/opt/scrutiny/config'
+    environment:
+      SCRUTINY_WEB_INFLUXDB_HOST: 'influxdb'
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 10s
+    networks:
+      - default
+      - infrastructure-proxy
+
+  collector:
+    image: 'ghcr.io/analogj/scrutiny:master-collector'
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    volumes:
+      - '/run/udev:/run/udev:ro'
+    environment:
+      COLLECTOR_API_ENDPOINT: 'https://scrutiny.media.localdomain'
+      COLLECTOR_HOST_ID: 'bdyvp22'
+      COLLECTOR_RUN_STARTUP: true
+    depends_on:
+      web:
+        condition: service_healthy
+    devices:
+      - /dev/sda
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+      - /dev/sdg
+      - /dev/sdh
+      - /dev/sdi
+      - /dev/sdj
+      - /dev/sdk
+      - /dev/sdl
+      - /dev/sdm
+      - /dev/sdn
+      - /dev/sdo
+      - /dev/sdp
+      - /dev/sdq
+      - /dev/sdr
+      - /dev/sds
+      - /dev/nvme0
+      - /dev/nvme1
+    networks:
+      - default
+
+volumes:
+  scrutiny-influxdb:
+  scrutiny-config:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true

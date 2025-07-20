@@ -1,0 +1,22 @@
+services:
+  reverse-proxy:
+    image: ghcr.io/trly/caddy:main
+    restart: always
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro,z
+      - caddy-data:/data
+      - caddy-config:/config
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - default
+      - proxy
+
+volumes:
+  caddy-data:
+  caddy-config:
+
+networks:
+  default:
+  proxy:
