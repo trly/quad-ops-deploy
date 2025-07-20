@@ -1,4 +1,23 @@
 services:
+  pki:
+    image: docker.io/smallstep/step-ca:latest
+    restart: always
+    volumes:
+    - certificate-authority:/home/step
+    networks:
+    - default
+
+    environment:
+      DOCKER_STEPCA_INIT_NAME: "Taylor Family CA"
+      DOCKER_STEPCA_INIT_DNS_NAMES: "*.media.localdomain,media.localdomain"
+      DOCKER_STEPCA_INIT_ADDRESS: ":9000"
+      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "acme-media-localdomain"
+      DOCKER_STEPCA_INIT_ACME: "true"
+      STEPCA_LOG_LEVEL: "info"
+
+    x-podman-env-secrets:
+      step-ca-password: DOCKER_STEPCA_INIT_PASSWORD
+
   reverse-proxy:
     image: ghcr.io/trly/caddy:main
     restart: always
@@ -13,9 +32,14 @@ services:
       - default
       - proxy
 
+secrets:
+  step-ca-password:
+    external: true
+
 volumes:
   caddy-data:
   caddy-config:
+  certificate-authority:
 
 networks:
   default:
