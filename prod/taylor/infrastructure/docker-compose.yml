@@ -13,10 +13,6 @@ services:
       - default
       - proxy
 
-    x-quad-ops-init:
-      - image: cgr.dev/chainguard/curl:latest
-        command: ["-k", "-XGET", "https://infrastructure-pki:9000/roots.pem", "-o", "/config/step_ca.crt"]
-
 secrets:
   porkbun-api-key:
     external: true
