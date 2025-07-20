@@ -1,3 +1,9 @@
+{
+  email travis.lyons@gmail.com
+  acme_ca https://pki:9000/acme/acme/directory
+  acme_ca_root /config/step_ca.crt
+}
+
 media.localdomain {
   tls internal
   reverse_proxy immich-server:2283
