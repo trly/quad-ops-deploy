@@ -1,15 +1,19 @@
 media.localdomain {
+  tls internal
   reverse_proxy immich-server:2283
 }
 
 scrutiny.media.localdomain
+  tls internal
   reverse_proxy scrutiny-web:8080
 }
 
 dozzle.media.localdomain
+  tls internal
   reverse_proxy dozzle-web:8080
 }
 
 beszel.media.localdomain
+  tls internal
   reverse_proxy beszel-hub:8090
 }
