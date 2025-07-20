@@ -39,7 +39,7 @@ services:
       - '/run/udev:/run/udev:ro'
     environment:
       COLLECTOR_API_ENDPOINT: 'https://scrutiny.media.localdomain'
-      COLLECTOR_HOST_ID: 'bdyvp22'
+      COLLECTOR_HOST_ID: 'polaris'
       COLLECTOR_RUN_STARTUP: true
     depends_on:
       web:
@@ -49,23 +49,6 @@ services:
       - /dev/sdb
       - /dev/sdc
       - /dev/sdd
-      - /dev/sde
-      - /dev/sdf
-      - /dev/sdg
-      - /dev/sdh
-      - /dev/sdi
-      - /dev/sdj
-      - /dev/sdk
-      - /dev/sdl
-      - /dev/sdm
-      - /dev/sdn
-      - /dev/sdo
-      - /dev/sdp
-      - /dev/sdq
-      - /dev/sdr
-      - /dev/sds
-      - /dev/nvme0
-      - /dev/nvme1
     networks:
       - default
 
