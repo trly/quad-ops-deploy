@@ -1,25 +1,33 @@
 {
-  email travis.lyons@gmail.com
-  acme_ca https://infrastructure-pki:9000/acme/acme/directory
-  acme_ca_root /config/step_ca.crt
+	email {env.ACME_EMAIL}
 }
 
-media.localdomain {
-  tls internal
-  reverse_proxy immich-server:2283
-}
+*.meadowridge.trly.dev, meadowridge.trly.dev {
+	tls {
+		dns porkbun {
+			api_key {env.PORKBUN_API_KEY}
+			api_secret_key {env.PORKBUN_API_SECRET_KEY}
+		}
+		resolvers curitiba.ns.porkbun.com fortaleza.ns.porkbun.com maceio.ns.porkbun.com salvador.ns.porkbun.com
+	}
 
-scrutiny.media.localdomain
-  tls internal
-  reverse_proxy scrutiny-web:8080
-}
+	@immich host photos.meadowridge.trly.dev
+	handle @immich {
+		reverse_proxy immich-server:2283
+	}
 
-dozzle.media.localdomain
-  tls internal
-  reverse_proxy dozzle-web:8080
-}
+	@scrutiny host scrutiny.meadowridge.trly.dev
+	handle @scrutiny {
+		reverse_proxy scrutiny-web:8080
+	}
 
-beszel.media.localdomain
-  tls internal
-  reverse_proxy beszel-hub:8090
+	@dozzle host dozzle.meadowridge.trly.dev
+	handle @dozzle {
+		reverse_proxy dozzle-web:8080
+	}
+
+	@beszel host beszel.meadowridge.trly.dev
+	handle @beszel {
+		reverse_proxy beszel-hub:8090
+	}
 }
