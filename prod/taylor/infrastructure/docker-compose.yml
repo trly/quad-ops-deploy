@@ -6,6 +6,8 @@ services:
     - certificate-authority:/home/step
     networks:
     - default
+    ports:
+      - 127.0.0.1::9000
 
     environment:
       DOCKER_STEPCA_INIT_NAME: "Taylor Family CA"
