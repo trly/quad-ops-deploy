@@ -9,6 +9,12 @@ services:
     ports:
       - '80:80'
       - '443:443'
+
+    x-podman-env-secrets:
+      porkbun-api-key: PORKBUN_API_KEY
+      porkbun-api-secret-key: PORKBUN_API_SECRET_KEY
+      acme-email: ACME_EMAIL
+
     networks:
       - default
       - proxy
