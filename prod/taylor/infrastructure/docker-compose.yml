@@ -32,9 +32,6 @@ services:
       - default
       - proxy
 
-    depends_on:
-      - pki
-
     x-quad-ops-init:
       - image: cgr.dev/chainguard/curl:latest
         command: ["-k", "-XGET", "https://infrastructure-pki:9000/roots.pem", "-o", "/config/step_ca.crt"]
