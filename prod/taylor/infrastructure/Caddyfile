@@ -1,6 +1,6 @@
 {
   email travis.lyons@gmail.com
-  acme_ca https://pki:9000/acme/acme/directory
+  acme_ca https://infrastructure-pki:9000/acme/acme/directory
   acme_ca_root /config/step_ca.crt
 }
 
