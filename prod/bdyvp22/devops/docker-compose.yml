@@ -1,6 +1,6 @@
 services:
   gogs:
-    image: docker.io/gogs/gogs:0.13
+    image: docker.io/gogs/gogs:0.13.3
     restart: always
     volumes:
       - gogs-data:/data
