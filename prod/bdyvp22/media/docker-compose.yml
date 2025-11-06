@@ -30,8 +30,6 @@ services:
       - default
       - infrastructure-proxy
     restart: always
-    healthcheck:
-      disable: false
 
   immich-machine-learning:
     # For hardware acceleration, add one of -[armnn, cuda, rocm, openvino, rknn] to the image tag.
@@ -43,8 +41,6 @@ services:
     volumes:
       - immich-model-cache:/cache
     restart: always
-    healthcheck:
-      disable: false
 
   immich-redis:
     image: docker.io/valkey/valkey:8-bookworm@sha256:facc1d2c3462975c34e10fccb167bfa92b0e0dbd992fc282c29a61c3243afb11
