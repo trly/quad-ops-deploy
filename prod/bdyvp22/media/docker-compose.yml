@@ -23,9 +23,9 @@ services:
     x-podman-env-secrets:
       media-immich-db-password: DB_PASSWORD
     ports:
-      - 127.0.0.1::2283
-      - 127.0.0.1::8081
-      - 127.0.0.1::8082
+      - 127.0.0.1:2283:2283
+      - 127.0.0.1:8081:8081
+      - 127.0.0.1:8082:8082
     networks:
       - default
       - infrastructure-proxy
