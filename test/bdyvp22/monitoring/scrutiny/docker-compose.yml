@@ -38,7 +38,7 @@ services:
     volumes:
       - '/run/udev:/run/udev:ro'
     environment:
-      COLLECTOR_API_ENDPOINT: 'https://scrutiny.home.trly.dev'
+      COLLECTOR_API_ENDPOINT: 'https://scrutiny.test.trly.dev'
       COLLECTOR_HOST_ID: 'bdyvp22'
       COLLECTOR_RUN_STARTUP: true
     depends_on:

@@ -1,7 +1,7 @@
 access_control:
   default_policy: deny
   rules:
-    - domain: '*.home.trly.dev'
+    - domain: '*.test.trly.dev'
       policy: one_factor
 storage:
   local:
@@ -53,9 +53,9 @@ session:
   expiration: '1h'
   remember_me: '1M'
   cookies:
-    - domain: 'home.trly.dev'
-      authelia_url: 'https://auth.home.trly.dev'
-      default_redirection_url: 'https://www.home.trly.dev'
+    - domain: 'test.trly.dev'
+      authelia_url: 'https://auth.test.trly.dev'
+      default_redirection_url: 'https://www.test.trly.dev'
       name: 'authelia_session'
       same_site: 'lax'
       inactivity: '5m'
