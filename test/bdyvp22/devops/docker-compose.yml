@@ -1,0 +1,17 @@
+services:
+  gogs:
+    image: docker.io/gogs/gogs:0.13.3
+    restart: always
+    volumes:
+      - gogs-data:/data
+    networks:
+      - default
+      - infrastructure-proxy
+
+volumes:
+  gogs-data:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true

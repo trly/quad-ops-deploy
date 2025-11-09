@@ -38,15 +38,34 @@ services:
     volumes:
       - '/run/udev:/run/udev:ro'
     environment:
-      COLLECTOR_API_ENDPOINT: 'http://scrutiny-web:8080'
-      COLLECTOR_HOST_ID: 'stardust'
+      COLLECTOR_API_ENDPOINT: 'https://scrutiny.home.trly.dev'
+      COLLECTOR_HOST_ID: 'bdyvp22'
       COLLECTOR_RUN_STARTUP: true
     depends_on:
       web:
         condition: service_healthy
     devices:
-      - "/dev/nvme0"
-      - "/dev/nvme1"
+      - /dev/sda
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+      - /dev/sdg
+      - /dev/sdh
+      - /dev/sdi
+      - /dev/sdj
+      - /dev/sdk
+      - /dev/sdl
+      - /dev/sdm
+      - /dev/sdn
+      - /dev/sdo
+      - /dev/sdp
+      - /dev/sdq
+      - /dev/sdr
+      - /dev/sds
+      - /dev/nvme0
+      - /dev/nvme1
     networks:
       - default
 

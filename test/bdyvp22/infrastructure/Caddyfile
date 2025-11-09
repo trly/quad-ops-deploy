@@ -1,0 +1,68 @@
+{
+	email {env.ACME_EMAIL}
+}
+
+*.home.trly.dev, home.trly.dev {
+	tls {
+		dns porkbun {
+			api_key {env.PORKBUN_API_KEY}
+			api_secret_key {env.PORKBUN_API_SECRET_KEY}
+		}
+		resolvers curitiba.ns.porkbun.com fortaleza.ns.porkbun.com maceio.ns.porkbun.com salvador.ns.porkbun.com
+	}
+
+	@immich host photos.home.trly.dev
+	handle @immich {
+		reverse_proxy immich-server:2283
+	}
+
+	@scrutiny host scrutiny.home.trly.dev
+	handle @scrutiny {
+		reverse_proxy scrutiny-web:8080
+	}
+
+	@gogs host git.home.trly.dev
+	handle @gogs {
+		reverse_proxy devops-gogs:3000
+	}
+
+	@unifi host unifi.home.trly.dev
+	handle @unifi {
+		reverse_proxy infrastructure-unifi-network-application:8443 {
+			transport http {
+				tls
+				tls_insecure_skip_verify
+			}
+		}
+	}
+
+	@sso host sso.home.trly.dev
+	handle @sso {
+		reverse_proxy infrastructure-authelia:9091
+	}
+
+	@dozzle host dozzle.home.trly.dev
+	handle @dozzle {
+		reverse_proxy dozzle-web:8080
+	}
+
+	@ollama host ollama.home.trly.dev
+	handle @ollama {
+    reverse_proxy llm-ollama:11434
+	}
+
+	@ai host ai.home.trly.dev
+	handle @ai {
+    reverse_proxy llm-open-webui:8080
+	}
+
+	@beszel host beszel.home.trly.dev
+	handle @beszel {
+		reverse_proxy beszel-hub:8090
+	}
+
+	@rss host rss.home.trly.dev
+	handle @rss {
+		reverse_proxy miniflux-web:8080
+	}
+}

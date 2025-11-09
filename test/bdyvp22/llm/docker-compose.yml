@@ -1,0 +1,25 @@
+services:
+  ollama:
+    image: docker.io/ollama/ollama:latest
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - infrastructure-proxy
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    environment:
+      OLLAMA_BASE_URL: "http://llm-ollama:11434"
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    restart: unless-stopped
+    networks:
+      - infrastructure-proxy
+
+volumes:
+  ollama-data:
+  open-webui:
+
+networks:
+  infrastructure-proxy:
+    external: true

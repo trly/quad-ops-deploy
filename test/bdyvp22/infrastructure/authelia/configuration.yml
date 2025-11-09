@@ -1,0 +1,63 @@
+access_control:
+  default_policy: deny
+  rules:
+    - domain: '*.home.trly.dev'
+      policy: one_factor
+storage:
+  local:
+    path: '/config/db.sqlite3'
+notifier:
+  disable_startup_check: true
+authentication_backend:
+  file:
+    path: '/config/users.yml'
+    watch: false
+    search:
+      email: false
+      case_insensitive: false
+    extra_attributes:
+      extra_example:
+        multi_valued: false
+        value_type: 'string'
+    password:
+      algorithm: 'argon2'
+      argon2:
+        variant: 'argon2id'
+        iterations: 3
+        memory: 65536
+        parallelism: 4
+        key_length: 32
+        salt_length: 16
+      scrypt:
+        variant: 'scrypt'
+        iterations: 16
+        block_size: 8
+        parallelism: 1
+        key_length: 32
+        salt_length: 16
+      pbkdf2:
+        variant: 'sha512'
+        iterations: 310000
+        salt_length: 16
+      sha2crypt:
+        variant: 'sha512'
+        iterations: 50000
+        salt_length: 16
+      bcrypt:
+        variant: 'standard'
+        cost: 12
+session:
+  name: 'authelia_session'
+  same_site: 'lax'
+  inactivity: '5m'
+  expiration: '1h'
+  remember_me: '1M'
+  cookies:
+    - domain: 'home.trly.dev'
+      authelia_url: 'https://auth.home.trly.dev'
+      default_redirection_url: 'https://www.home.trly.dev'
+      name: 'authelia_session'
+      same_site: 'lax'
+      inactivity: '5m'
+      expiration: '1h'
+      remember_me: '1d'
