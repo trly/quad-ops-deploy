@@ -9,10 +9,10 @@ services:
       - caddy-config:/config
     ports:
       - target: 80
-        published: 8080
+        published: 80
         mode: host
       - target: 443
-        published: 8443
+        published: 443
         mode: host
     x-podman-env-secrets:
       porkbun-api-key: PORKBUN_API_KEY
@@ -47,7 +47,7 @@ services:
         published: 8080
         mode: host
       - target: 1900
-        published: 51900
+        published: 1900
         protocol: udp
         mode: host
       - target: 8843
