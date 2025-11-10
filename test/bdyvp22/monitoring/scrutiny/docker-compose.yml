@@ -36,7 +36,7 @@ services:
       - SYS_RAWIO
       - SYS_ADMIN
     volumes:
-      - '/run/udev:/run/udev:ro'
+      - '/run/udev:/run/udev:ro,z'
     environment:
       COLLECTOR_API_ENDPOINT: 'https://scrutiny.test.trly.dev'
       COLLECTOR_HOST_ID: 'bdyvp22'

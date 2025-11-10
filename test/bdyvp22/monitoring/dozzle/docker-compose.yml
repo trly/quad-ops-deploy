@@ -2,12 +2,11 @@ services:
   web:
     image: docker.io/amir20/dozzle:latest
     volumes:
-      - /run/podman/podman.sock:/var/run/docker.sock:ro,z
+      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro,z
     networks:
       - infrastructure-proxy
     environment:
       - DOZZLE_TIMEOUT=10s
-    privileged: true
 networks:
   infrastructure-proxy:
     external: true

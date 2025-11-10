@@ -14,9 +14,8 @@ services:
     restart: unless-stopped
     network_mode: host
     networks: []
-    privileged: true
     volumes:
-      - /run/podman/podman.sock:/var/run/docker.sock:ro
+      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro,z
       - beszel-socket:/var/lib/beszel-agent
 
 volumes:
