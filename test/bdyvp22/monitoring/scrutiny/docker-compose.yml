@@ -45,25 +45,6 @@ services:
       web:
         condition: service_healthy
     devices:
-      - /dev/sda
-      - /dev/sdb
-      - /dev/sdc
-      - /dev/sdd
-      - /dev/sde
-      - /dev/sdf
-      - /dev/sdg
-      - /dev/sdh
-      - /dev/sdi
-      - /dev/sdj
-      - /dev/sdk
-      - /dev/sdl
-      - /dev/sdm
-      - /dev/sdn
-      - /dev/sdo
-      - /dev/sdp
-      - /dev/sdq
-      - /dev/sdr
-      - /dev/sds
       - /dev/nvme0
       - /dev/nvme1
     networks:

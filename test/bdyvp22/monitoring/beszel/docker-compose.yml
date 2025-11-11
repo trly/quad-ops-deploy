@@ -12,10 +12,10 @@ services:
   agent:
     image: docker.io/henrygd/beszel-agent
     restart: unless-stopped
-    network_mode: host
+    privileged: true
     networks: []
     volumes:
-      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro,z
+      - /var/run/podman/podman.sock:/var/run/docker.sock:ro,z
       - beszel-socket:/var/lib/beszel-agent
 
 volumes:
