@@ -7,6 +7,9 @@ services:
       - infrastructure-proxy
     environment:
       - DOZZLE_TIMEOUT=10s
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
 networks:
   infrastructure-proxy:
     external: true

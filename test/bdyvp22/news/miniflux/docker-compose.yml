@@ -11,6 +11,9 @@ services:
     networks:
       - default
       - infrastructure-proxy
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
   db:
     image: docker.io/library/postgres:17-alpine
     environment:

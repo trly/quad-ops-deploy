@@ -39,6 +39,9 @@ services:
       - default
       - infrastructure-proxy
     restart: always
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
 
   immich-machine-learning:
     # For hardware acceleration, add one of -[armnn, cuda, rocm, openvino, rknn] to the image tag.
