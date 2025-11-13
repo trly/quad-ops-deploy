@@ -97,5 +97,6 @@ secrets:
 networks:
   default:
   proxy:
+    name: infrastructure-proxy
   unifi:
   authelia:
