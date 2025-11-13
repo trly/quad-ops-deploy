@@ -11,6 +11,8 @@ services:
     x-quad-ops-depends-on:
       - project: infrastructure
         service: reverse-proxy
+    depend_on:
+      - agent
 
   agent:
     image: docker.io/henrygd/beszel-agent
