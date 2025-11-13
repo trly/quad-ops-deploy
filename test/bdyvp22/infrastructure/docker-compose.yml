@@ -20,7 +20,7 @@ services:
       acme-email: ACME_EMAIL
     networks:
       - default
-      - infrastructure-proxy
+      - proxy
 
   unifi-network-application:
     image: lscr.io/linuxserver/unifi-network-application:latest
@@ -68,7 +68,7 @@ services:
     depends_on:
       - unifi-db
     networks:
-      - infrastructure-proxy
+      - proxy
       - unifi
     volumes:
       - unifi-config:/config
@@ -119,7 +119,7 @@ secrets:
 
 networks:
   default:
-  infrastructure-proxy:
-    name: infrastructure-proxy
+  proxy:
+    name: proxy
   unifi:
   authelia:
