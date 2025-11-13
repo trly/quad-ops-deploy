@@ -5,6 +5,9 @@ services:
       - ollama-data:/root/.ollama
     networks:
       - infrastructure-proxy
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
   open-webui:
     image: ghcr.io/open-webui/open-webui:latest
     environment:
@@ -15,6 +18,9 @@ services:
     restart: unless-stopped
     networks:
       - infrastructure-proxy
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
 
 volumes:
   ollama-data:

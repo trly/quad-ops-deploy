@@ -8,6 +8,9 @@ services:
     volumes:
       - beszel-data:/beszel_data
       - beszel-socket:/beszel_socket
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
 
   agent:
     image: docker.io/henrygd/beszel-agent

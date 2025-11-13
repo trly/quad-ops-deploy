@@ -44,6 +44,7 @@ services:
       unifi-mongo-password: MONGO_PASS
     depends_on:
       - unifi-db
+      - reverse-proxy
     networks:
       - proxy
       - unifi

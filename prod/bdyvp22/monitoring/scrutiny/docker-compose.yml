@@ -29,6 +29,9 @@ services:
     networks:
       - default
       - infrastructure-proxy
+    x-quad-ops-depends-on:
+      - project: infrastructure
+        service: reverse-proxy
 
   collector:
     image: 'ghcr.io/analogj/scrutiny:master-collector'
