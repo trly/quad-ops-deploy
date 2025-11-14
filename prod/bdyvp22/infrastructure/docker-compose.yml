@@ -1,19 +1,19 @@
 services:
   reverse-proxy:
-   image: ghcr.io/trly/caddy:main
-   restart: always
-   userns_mode: keep-id
-   volumes:
-     - ./Caddyfile:/etc/caddy/Caddyfile:ro,z
-     - caddy-data:/data
-     - caddy-config:/config
-   ports:
-     - target: 80
-       published: 80
-       mode: host
-     - target: 443
-       published: 443
-       mode: host
+    image: ghcr.io/trly/caddy:main
+    restart: always
+    userns_mode: keep-id
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro,z
+      - caddy-data:/data
+      - caddy-config:/config
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+      - target: 443
+        published: 443
+        mode: host
     x-podman-env-secrets:
       porkbun-api-key: PORKBUN_API_KEY
       porkbun-api-secret-key: PORKBUN_API_SECRET_KEY
@@ -23,46 +23,46 @@ services:
       - proxy
 
   unifi-network-application:
-   image: lscr.io/linuxserver/unifi-network-application:latest
-   environment:
-     - TZ=Etc/UTC
-     - MONGO_USER=unifi
-     - MONGO_HOST=unifi-db
-     - MONGO_PORT=27017
-     - MONGO_DBNAME=unifi
-     - MONGO_AUTHSOURCE=admin
-     - MEM_LIMIT=1024 #optional
-     - MEM_STARTUP=1024 #optional
-     - MONGO_TLS= #optional
-   ports:
-     - target: 3478
-       published: 3478
-       protocol: udp
-       mode: host
-     - target: 10001
-       published: 10001
-       protocol: udp
-       mode: host
-     - target: 8080
-       published: 8080
-       mode: host
-     - target: 1900
-       published: 1900
-       protocol: udp
-       mode: host
-     - target: 8843
-       published: 8843
-       mode: host
-     - target: 8880
-       published: 8880
-       mode: host
-     - target: 6789
-       published: 6789
-       mode: host
-     - target: 5514
-       published: 5514
-       protocol: udp
-       mode: host
+    image: lscr.io/linuxserver/unifi-network-application:latest
+    environment:
+      - TZ=Etc/UTC
+      - MONGO_USER=unifi
+      - MONGO_HOST=unifi-db
+      - MONGO_PORT=27017
+      - MONGO_DBNAME=unifi
+      - MONGO_AUTHSOURCE=admin
+      - MEM_LIMIT=1024 #optional
+      - MEM_STARTUP=1024 #optional
+      - MONGO_TLS= #optional
+    ports:
+      - target: 3478
+        published: 3478
+        protocol: udp
+        mode: host
+      - target: 10001
+        published: 10001
+        protocol: udp
+        mode: host
+      - target: 8080
+        published: 8080
+        mode: host
+      - target: 1900
+        published: 1900
+        protocol: udp
+        mode: host
+      - target: 8843
+        published: 8843
+        mode: host
+      - target: 8880
+        published: 8880
+        mode: host
+      - target: 6789
+        published: 6789
+        mode: host
+      - target: 5514
+        published: 5514
+        protocol: udp
+        mode: host
     x-podman-env-secrets:
       unifi-mongo-password: MONGO_PASS
     depends_on:
@@ -76,19 +76,19 @@ services:
     restart: unless-stopped
 
   unifi-db:
-   image: docker.io/library/mongo:8
-   environment:
-     - MONGO_INITDB_ROOT_USERNAME=root
-     - MONGO_USER=unifi
-     - MONGO_DBNAME=unifi
-     - MONGO_AUTHSOURCE=admin
-   x-podman-env-secrets:
-     unifi-mongo-root-password: MONGO_INITDB_ROOT_PASSWORD
-     unifi-mongo-password: MONGO_PASS
-   networks:
-     - unifi
-   userns_mode: keep-id
-   volumes:
+    image: docker.io/library/mongo:8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_USER=unifi
+      - MONGO_DBNAME=unifi
+      - MONGO_AUTHSOURCE=admin
+    x-podman-env-secrets:
+      unifi-mongo-root-password: MONGO_INITDB_ROOT_PASSWORD
+      unifi-mongo-password: MONGO_PASS
+    networks:
+      - unifi
+    userns_mode: keep-id
+    volumes:
       - unifi-db-data:/data/db
       - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
     restart: unless-stopped
