@@ -8,7 +8,6 @@
 # The compose file on main may not be compatible with the latest release.
 
 name: immich
-
 services:
   immich-server:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
@@ -23,16 +22,25 @@ services:
     x-podman-env-secrets:
       media-immich-db-password: DB_PASSWORD
     ports:
-      - 127.0.0.1:2283:2283
-      - 127.0.0.1:8081:8081
-      - 127.0.0.1:8082:8082
+      - target: 2283
+        published: 2283
+        host_ip: 127.0.0.1
+        mode: host
+      - target: 8081
+        published: 8081
+        host_ip: 127.0.0.1
+        mode: host
+      - target: 8082
+        published: 8082
+        host_ip: 127.0.0.1
+        mode: host
+    depends_on:
+      - immich-redis
+      - immich-database
     networks:
       - default
       - infrastructure-proxy
     restart: always
-    depends_on:
-      - immich-redis
-      - immich-database
     x-quad-ops-depends-on:
       - project: infrastructure
         service: reverse-proxy
