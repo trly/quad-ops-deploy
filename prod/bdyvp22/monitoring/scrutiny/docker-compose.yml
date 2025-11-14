@@ -3,11 +3,6 @@ services:
     image: docker.io/library/influxdb:2.2
     volumes:
       - 'scrutiny-influxdb:/var/lib/influxdb2'
-    healthcheck:
-      test: ["CMD", "curl", "--connect-timeout", "5", "--max-time", "8", "-f", "http://localhost:8086/health"]
-      interval: 5s
-      timeout: 10s
-      retries: 20
     networks:
       - default
 
@@ -17,15 +12,6 @@ services:
       - 'scrutiny-config:/opt/scrutiny/config'
     environment:
       SCRUTINY_WEB_INFLUXDB_HOST: 'influxdb'
-    depends_on:
-      influxdb:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "--connect-timeout", "5", "--max-time", "8", "-f", "http://localhost:8080/api/health"]
-      interval: 5s
-      timeout: 10s
-      retries: 20
-      start_period: 10s
     networks:
       - default
       - infrastructure-proxy
@@ -44,9 +30,6 @@ services:
       COLLECTOR_API_ENDPOINT: 'https://scrutiny.home.trly.dev'
       COLLECTOR_HOST_ID: 'bdyvp22'
       COLLECTOR_RUN_STARTUP: true
-    depends_on:
-      web:
-        condition: service_healthy
     devices:
       - /dev/sda
       - /dev/sdb
