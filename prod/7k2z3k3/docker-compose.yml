@@ -7,8 +7,10 @@ services:
     volumes:
       - baserow_data:/baserow/data
     ports:
-      - "8080:80"
-      - "8443:443"
+      - target: 80
+        published: 8080
+      - target: 443
+        published: 8443
 
 volumes:
   baserow_data:
