@@ -1,0 +1,14 @@
+services:
+  baserow:
+    image: docker.io/baserow/baserow:2.0.3
+    restart: always
+    environment:
+      BASEROW_PUBLIC_URL: "http://localhost:8080"
+    volumes:
+      - baserow_data:/baserow/data
+    ports:
+      - "8080:80"
+      - "8443:443"
+
+volumes:
+  baserow_data:
