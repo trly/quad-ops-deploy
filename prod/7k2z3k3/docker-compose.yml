@@ -9,8 +9,10 @@ services:
     ports:
       - target: 80
         published: 8080
+        mode: host
       - target: 443
         published: 8443
+        mode: host
 
 volumes:
   baserow_data:
