@@ -13,13 +13,14 @@ services:
 
   web:
     image: 'ghcr.io/analogj/scrutiny:master-web'
+    restart: unless-stopped
     volumes:
       - 'scrutiny-config:/opt/scrutiny/config'
     environment:
       SCRUTINY_WEB_INFLUXDB_HOST: 'influxdb'
     depends_on:
       influxdb:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
       interval: 5s
@@ -35,6 +36,7 @@ services:
 
   collector:
     image: 'ghcr.io/analogj/scrutiny:master-collector'
+    restart: unless-stopped
     cap_add:
       - SYS_RAWIO
       - SYS_ADMIN
@@ -46,7 +48,7 @@ services:
       COLLECTOR_RUN_STARTUP: true
     depends_on:
       web:
-        condition: service_healthy
+        condition: service_started
     devices:
       - /dev/nvme0
       - /dev/nvme1

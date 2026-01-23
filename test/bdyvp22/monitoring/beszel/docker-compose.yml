@@ -17,7 +17,10 @@ services:
   agent:
     image: docker.io/henrygd/beszel-agent
     restart: unless-stopped
-    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - label=disable
     networks: []
     volumes:
       - /var/run/podman/podman.sock:/var/run/docker.sock:ro,z
