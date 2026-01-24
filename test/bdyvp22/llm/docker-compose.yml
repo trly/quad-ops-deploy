@@ -8,6 +8,7 @@ services:
     x-quad-ops-depends-on:
       - project: infrastructure
         service: reverse-proxy
+        optional: true
   open-webui:
     image: ghcr.io/open-webui/open-webui:latest
     environment:
@@ -21,6 +22,7 @@ services:
     x-quad-ops-depends-on:
       - project: infrastructure
         service: reverse-proxy
+        optional: true
 
 volumes:
   ollama-data:
