@@ -1,5 +1,5 @@
 services:
-  reverse-proxy:
+  proxy:
     image: ghcr.io/trly/caddy:main
     restart: always
     userns_mode: keep-id
@@ -67,7 +67,7 @@ services:
       unifi-mongo-password: MONGO_PASS
     depends_on:
       - unifi-db
-      - reverse-proxy
+      - proxy
     networks:
       - proxy
       - unifi
@@ -121,6 +121,5 @@ secrets:
 networks:
   default:
   proxy:
-    name: infrastructure-proxy
   unifi:
   authelia:

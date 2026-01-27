@@ -11,10 +11,10 @@ services:
       miniflux-db-url: DATABASE_URL
     networks:
       - default
-      - infrastructure-proxy
+      - infrastructure-proxy.network
     x-quad-ops-depends-on:
       - project: infrastructure
-        service: reverse-proxy
+        service: proxy
   db:
     image: docker.io/library/postgres:17-alpine
     environment:
@@ -36,7 +36,7 @@ volumes:
 
 networks:
   default:
-  infrastructure-proxy:
+  infrastructure-proxy.network:
     external: true
 
 secrets:

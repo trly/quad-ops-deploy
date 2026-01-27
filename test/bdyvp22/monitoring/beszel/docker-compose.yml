@@ -4,14 +4,14 @@ services:
     restart: unless-stopped
     networks:
       - default
-      - infrastructure-proxy
+      - infrastructure-proxy.network
     volumes:
       - beszel-data:/beszel_data
       - beszel-socket:/beszel_socket
     x-quad-ops-depends-on:
       - project: infrastructure
-        service: reverse-proxy
-    depend_on:
+        service: proxy
+    depends_on:
       - agent
 
   agent:
@@ -32,5 +32,5 @@ volumes:
 
 networks:
   default:
-  infrastructure-proxy:
+  infrastructure-proxy.network:
     external: true

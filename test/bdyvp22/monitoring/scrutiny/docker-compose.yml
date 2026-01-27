@@ -29,10 +29,10 @@ services:
       start_period: 10s
     networks:
       - default
-      - infrastructure-proxy
+      - infrastructure-proxy.network
     x-quad-ops-depends-on:
       - project: infrastructure
-        service: reverse-proxy
+        service: proxy
 
   collector:
     image: 'ghcr.io/analogj/scrutiny:master-collector'
@@ -61,5 +61,5 @@ volumes:
 
 networks:
   default:
-  infrastructure-proxy:
+  infrastructure-proxy.network:
     external: true

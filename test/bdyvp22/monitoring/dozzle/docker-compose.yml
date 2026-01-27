@@ -4,12 +4,12 @@ services:
     volumes:
       - /var/run/podman/podman.sock:/var/run/docker.sock:ro,z
     networks:
-      - infrastructure-proxy
+      - infrastructure-proxy.network
     environment:
       - DOZZLE_TIMEOUT=10s
     x-quad-ops-depends-on:
       - project: infrastructure
-        service: reverse-proxy
+        service: proxy
 networks:
-  infrastructure-proxy:
+  infrastructure-proxy.network:
     external: true

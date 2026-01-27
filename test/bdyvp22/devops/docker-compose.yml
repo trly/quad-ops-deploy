@@ -6,15 +6,15 @@ services:
       - gogs-data:/data
     networks:
       - default
-      - infrastructure-proxy
+      - infrastructure-proxy.network
     x-quad-ops-depends-on:
       - project: infrastructure
-        service: reverse-proxy
+        service: proxy
 
 volumes:
   gogs-data:
 
 networks:
   default:
-  infrastructure-proxy:
+  infrastructure-proxy.network:
     external: true
