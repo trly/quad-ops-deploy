@@ -39,11 +39,7 @@ services:
       - database
     networks:
       - default
-      - infrastructure-proxy.network
     restart: always
-    x-quad-ops-depends-on:
-      - project: infrastructure
-        service: proxy
 
   machine-learning:
     # For hardware acceleration, add one of -[armnn, cuda, rocm, openvino, rknn] to the image tag.
@@ -87,5 +83,3 @@ volumes:
 
 networks:
   default:
-  infrastructure-proxy.network:
-    external: true

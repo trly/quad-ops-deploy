@@ -26,21 +26,6 @@
 		reverse_proxy devops-gogs:3000
 	}
 
-	@unifi host unifi.test.trly.dev
-	handle @unifi {
-		reverse_proxy infrastructure-unifi-network-application:8443 {
-			transport http {
-				tls
-				tls_insecure_skip_verify
-			}
-		}
-	}
-
-	@sso host sso.test.trly.dev
-	handle @sso {
-		reverse_proxy infrastructure-authelia:9091
-	}
-
 	@dozzle host dozzle.test.trly.dev
 	handle @dozzle {
 		reverse_proxy dozzle-web:8080

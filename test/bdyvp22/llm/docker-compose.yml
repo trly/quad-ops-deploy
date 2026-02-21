@@ -3,12 +3,6 @@ services:
     image: docker.io/ollama/ollama:latest
     volumes:
       - ollama-data:/root/.ollama
-    networks:
-      - infrastructure-proxy.network
-    x-quad-ops-depends-on:
-      - project: infrastructure
-        service: proxy
-        optional: true
   open-webui:
     image: ghcr.io/open-webui/open-webui:latest
     environment:
@@ -17,17 +11,8 @@ services:
     volumes:
       - open-webui:/app/backend/data
     restart: unless-stopped
-    networks:
-      - infrastructure-proxy.network
-    x-quad-ops-depends-on:
-      - project: infrastructure
-        service: proxy
-        optional: true
 
 volumes:
   ollama-data:
   open-webui:
 
-networks:
-  infrastructure-proxy.network:
-    external: true
