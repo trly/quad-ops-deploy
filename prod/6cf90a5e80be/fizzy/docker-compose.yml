@@ -13,7 +13,7 @@ services:
       - fizzy:/rails/storage
 
 volumes:
-  fizzy:
+  web:
 
 secrets:
   fizzy-secret-key-base:
