@@ -10,7 +10,7 @@ services:
     x-podman-env-secrets:
       fizzy-secret-key-base: SECRET_KEY_BASE
     volumes:
-      - fizzy:/rails/storage
+      - web:/rails/storage
 
 volumes:
   web:
