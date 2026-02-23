@@ -1,0 +1,21 @@
+services:
+  web:
+    image: ghcr.io/basecamp/fizzy:main
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8443:443"
+    environment:
+      - TLS_DOMAIN=${TLS_DOMAIN}
+      - BASE_URL=${BASE_URL}
+    x-podman-env-secrets:
+      fizzy-secret-key-base: SECRET_KEY_BASE
+    volumes:
+      - fizzy:/rails/storage
+
+volumes:
+  fizzy:
+
+secrets:
+  fizzy-secret-key-base:
+    external: true
