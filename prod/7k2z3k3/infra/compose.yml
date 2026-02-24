@@ -1,0 +1,35 @@
+---
+services:
+  caddy:
+    image: docker.io/library/caddy:2.11
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy
+      - caddy-data:/data
+      - caddy-config:/config
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v2
+    x-podman-env-secrets:
+      infra-pocketid-secret: ENCRYPTION_KEY
+    ports:
+      - 1411:1411
+    volumes:
+      - "pocket-id-data:/app/data"
+    healthcheck:
+      test: [ "CMD", "/app/pocket-id", "healthcheck" ]
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+
+secrets:
+  infra-pocketid-key:
+    external: true
+
+volumes:
+  caddy-data:
+  caddy-config:
+  pocket-id-data:
