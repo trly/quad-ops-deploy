@@ -11,7 +11,7 @@ services:
       - "443:443"
       - "443:443/udp"
     volumes:
-      - ./Caddyfile:/etc/caddy
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
       - caddy-config:/config
   pocket-id:
