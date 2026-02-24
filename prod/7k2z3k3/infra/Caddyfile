@@ -13,6 +13,6 @@
 
 	@oidc host oidc.7k2z3k3.home.trly.dev
 	handle @oidc {
-		reverse_proxy infrastructure-pocketid:9091
+		reverse_proxy infrastructure-pocketid:1411
 	}
 }
