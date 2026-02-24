@@ -16,6 +16,13 @@ services:
       - caddy-config:/config
   pocket-id:
     image: ghcr.io/pocket-id/pocket-id:v2
+    environment:
+      APP_URL: ${APP_URL}
+      TRUST_PROXY: ${TRUST_PROXY}
+      PUID: ${PUID}
+      PGID: ${PGID}
+      RELYING_PARTY_ID: ${RELYING_PARTY_ID}
+      RELYING_PARTY_ORIGIN: ${RELYING_PARTY_ORIGIN}
     x-podman-env-secrets:
       infra-pocketid-secret: ENCRYPTION_KEY
     ports:
