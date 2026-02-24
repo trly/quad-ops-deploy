@@ -13,6 +13,6 @@
 
 	@oidc host oidc.7k2z3k3.home.trly.dev
 	handle @oidc {
-		reverse_proxy pocket-id:1411
+		reverse_proxy systemd-infra-pocket-id:1411
 	}
 }
