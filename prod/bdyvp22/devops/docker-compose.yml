@@ -13,6 +13,7 @@ services:
 
 volumes:
   gogs-data:
+    name: devops_gogs-data
 
 networks:
   default:

@@ -24,7 +24,9 @@ services:
 
 volumes:
   beszel-data:
+    name: beszel_beszel-data
   beszel-socket:
+    name: beszel_beszel-socket
 
 networks:
   default:

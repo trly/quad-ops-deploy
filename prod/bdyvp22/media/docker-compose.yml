@@ -83,7 +83,9 @@ secrets:
 
 volumes:
   immich-model-cache:
+    name: media_immich-model-cache
   immich-postgres-data:
+    name: media_immich-postgres-data
 
 networks:
   default:

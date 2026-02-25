@@ -57,7 +57,9 @@ services:
 
 volumes:
   scrutiny-influxdb:
+    name: scrutiny_scrutiny-influxdb
   scrutiny-config:
+    name: scrutiny_scrutiny-config
 
 networks:
   default:

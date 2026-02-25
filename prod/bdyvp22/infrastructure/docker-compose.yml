@@ -95,10 +95,15 @@ services:
 
 volumes:
   caddy-data:
+    name: infrastructure_caddy-data
   caddy-config:
+    name: infrastructure_caddy-config
   unifi-db-data:
+    name: infrastructure_unifi-db-data
   unifi-config:
+    name: infrastructure_unifi-config
   authelia-data:
+    name: infrastructure_authelia-data
 
 secrets:
   porkbun-api-key:

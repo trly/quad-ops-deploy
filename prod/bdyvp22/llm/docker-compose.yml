@@ -24,7 +24,9 @@ services:
 
 volumes:
   ollama-data:
+    name: llm_ollama-data
   open-webui:
+    name: llm_open-webui
 
 networks:
   infrastructure-proxy:
