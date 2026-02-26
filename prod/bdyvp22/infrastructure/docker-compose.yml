@@ -23,6 +23,7 @@ services:
       - proxy
 
   unifi-network-application:
+    container_name: infrastructure-unifi-network-application
     image: lscr.io/linuxserver/unifi-network-application:latest
     environment:
       - TZ=Etc/UTC
@@ -102,8 +103,6 @@ volumes:
     name: infrastructure_unifi-db-data
   unifi-config:
     name: infrastructure_unifi-config
-  authelia-data:
-    name: infrastructure_authelia-data
 
 secrets:
   porkbun-api-key:
@@ -116,16 +115,9 @@ secrets:
     external: true
   unifi-mongo-root-password:
     external: true
-  authelia-session-secret:
-    external: true
-  authelia-storage-encryption-key:
-    external: true
-  authelia-jwt-secret:
-    external: true
 
 networks:
   default:
   proxy:
     name: infrastructure-proxy
   unifi:
-  authelia:

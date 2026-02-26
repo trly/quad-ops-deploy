@@ -1,5 +1,6 @@
 services:
   ollama:
+    container_name: llm-open-webui
     image: docker.io/ollama/ollama:latest
     volumes:
       - ollama-data:/root/.ollama

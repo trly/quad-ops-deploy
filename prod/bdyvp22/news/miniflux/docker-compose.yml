@@ -1,5 +1,6 @@
 services:
   web:
+    container_name: miniflux-web
     image: docker.io/miniflux/miniflux:latest
     depends_on:
       db:

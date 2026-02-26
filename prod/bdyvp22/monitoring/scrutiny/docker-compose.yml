@@ -7,6 +7,7 @@ services:
       - default
 
   web:
+    container_name: scrutiny-web
     image: 'ghcr.io/analogj/scrutiny:master-web'
     volumes:
       - 'scrutiny-config:/opt/scrutiny/config'
@@ -15,9 +16,6 @@ services:
     networks:
       - default
       - infrastructure-proxy
-    x-quad-ops-depends-on:
-      - project: infrastructure
-        service: reverse-proxy
 
   collector:
     image: 'ghcr.io/analogj/scrutiny:master-collector'

@@ -1,5 +1,6 @@
 services:
   hub:
+    container_name: beszel-hub
     image: docker.io/henrygd/beszel:latest
     restart: unless-stopped
     networks:
