@@ -21,11 +21,6 @@
 		reverse_proxy scrutiny-web:8080
 	}
 
-	@gogs host git.home.trly.dev
-	handle @gogs {
-		reverse_proxy devops-gogs:3000
-	}
-
 	@unifi host unifi.home.trly.dev
 	handle @unifi {
 		reverse_proxy infrastructure-unifi-network-application:8443 {
@@ -39,16 +34,6 @@
 	@dozzle host dozzle.home.trly.dev
 	handle @dozzle {
 		reverse_proxy dozzle-web:8080
-	}
-
-	@ollama host ollama.home.trly.dev
-	handle @ollama {
-    		reverse_proxy llm-ollama:11434
-	}
-
-	@ai host ai.home.trly.dev
-	handle @ai {
-    		reverse_proxy llm-open-webui:8080
 	}
 
 	@beszel host beszel.home.trly.dev
