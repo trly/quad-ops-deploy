@@ -60,4 +60,9 @@
 	handle @rss {
 		reverse_proxy miniflux-web:8080
 	}
+
+	@id host id.home.trly.dev
+	handle @id {
+		reverse_proxy infrastructure-pocket-id:1411
+	}
 }
