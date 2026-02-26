@@ -17,10 +17,10 @@ services:
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     environment:
       IMMICH_TELEMETRY_INCLUDE: ${IMMICH_TELEMETRY_INCLUDE}
-      DB_HOSTNAME: systemd-immich-immich-database
+      DB_HOSTNAME: immich-immich-database
       DB_USERNAME: ${DB_USERNAME}
       DB_DATABASE_NAME: ${DB_DATABASE_NAME}
-      REDIS_HOSTNAME: systemd-immich-immich-redis
+      REDIS_HOSTNAME: immich-immich-redis
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/usr/src/app/upload:z
