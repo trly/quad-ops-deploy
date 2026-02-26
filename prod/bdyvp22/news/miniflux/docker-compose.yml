@@ -7,14 +7,16 @@ services:
         condition: service_started
     environment:
       - RUN_MIGRATIONS=1
+      - OAUTH2_PROVIDER=oidc
+      - OAUTH2_REDIRECT_URL=https://rss.home.trly.dev/oauth2/oidc/callback
     x-podman-env-secrets:
       miniflux-db-url: DATABASE_URL
+      pocket-id-discovery-endpoint: OAUTH2_OIDC_DISCOVERY_ENDPOINT
+      miniflux-oauth2-client-id: OAUTH2_CLIENT_ID
+      miniflux-oauth2-client-secret: OAUTH2_CLIENT_SECRET
     networks:
       - default
       - infrastructure-proxy
-    x-quad-ops-depends-on:
-      - project: infrastructure
-        service: reverse-proxy
   db:
     image: docker.io/library/postgres:17-alpine
     environment:
@@ -41,6 +43,12 @@ networks:
     external: true
 
 secrets:
+  pocket-id-discovery-endpoint:
+    external: true
+  miniflux-oauth2-client-id:
+    external: true
+  miniflux-oauth2-client-secret:
+    external: true
   miniflux-db-password:
     external: true
   miniflux-db-url:
