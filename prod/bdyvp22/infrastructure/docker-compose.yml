@@ -22,78 +22,6 @@ services:
       - default
       - proxy
 
-  unifi-network-application:
-    container_name: infrastructure-unifi-network-application
-    image: lscr.io/linuxserver/unifi-network-application:latest
-    environment:
-      - TZ=Etc/UTC
-      - MONGO_USER=unifi
-      - MONGO_HOST=unifi-db
-      - MONGO_PORT=27017
-      - MONGO_DBNAME=unifi
-      - MONGO_AUTHSOURCE=admin
-      - MEM_LIMIT=1024 #optional
-      - MEM_STARTUP=1024 #optional
-      - MONGO_TLS= #optional
-    ports:
-      - target: 3478
-        published: 3478
-        protocol: udp
-        mode: host
-      - target: 10001
-        published: 10001
-        protocol: udp
-        mode: host
-      - target: 8080
-        published: 8080
-        mode: host
-      - target: 1900
-        published: 1900
-        protocol: udp
-        mode: host
-      - target: 8843
-        published: 8843
-        mode: host
-      - target: 8880
-        published: 8880
-        mode: host
-      - target: 6789
-        published: 6789
-        mode: host
-      - target: 5514
-        published: 5514
-        protocol: udp
-        mode: host
-    x-podman-env-secrets:
-      unifi-mongo-password: MONGO_PASS
-    depends_on:
-      - unifi-db
-      - reverse-proxy
-    networks:
-      - proxy
-      - unifi
-    volumes:
-      - unifi-config:/config
-    restart: unless-stopped
-
-  unifi-db:
-    image: docker.io/library/mongo:8
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_USER=unifi
-      - MONGO_DBNAME=unifi
-      - MONGO_AUTHSOURCE=admin
-    x-podman-env-secrets:
-      unifi-mongo-root-password: MONGO_INITDB_ROOT_PASSWORD
-      unifi-mongo-password: MONGO_PASS
-    networks:
-      - unifi
-    userns_mode: keep-id
-    volumes:
-      - unifi-db-data:/data/db
-      - ./unifi-init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro,z
-    restart: unless-stopped
-
   pocket-id:
     image: ghcr.io/pocket-id/pocket-id:v2
     environment:
@@ -121,10 +49,6 @@ volumes:
     name: infrastructure_caddy-data
   caddy-config:
     name: infrastructure_caddy-config
-  unifi-db-data:
-    name: infrastructure_unifi-db-data
-  unifi-config:
-    name: infrastructure_unifi-config
   pocket-id-data:
 
 secrets:
@@ -134,10 +58,6 @@ secrets:
     external: true
   acme-email:
     external: true
-  unifi-mongo-password:
-    external: true
-  unifi-mongo-root-password:
-    external: true
   pocketid-encryption-key:
     external: true
 
@@ -145,4 +65,3 @@ networks:
   default:
   proxy:
     name: infrastructure-proxy
-  unifi:
