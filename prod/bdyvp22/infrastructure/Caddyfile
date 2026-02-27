@@ -21,16 +21,6 @@
 		reverse_proxy scrutiny-web:8080
 	}
 
-	@unifi host unifi.home.trly.dev
-	handle @unifi {
-		reverse_proxy infrastructure-unifi-network-application:8443 {
-			transport http {
-				tls
-				tls_insecure_skip_verify
-			}
-		}
-	}
-
 	@dozzle host dozzle.home.trly.dev
 	handle @dozzle {
 		reverse_proxy dozzle-web:8080
