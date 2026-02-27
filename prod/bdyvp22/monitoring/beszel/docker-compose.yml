@@ -19,6 +19,9 @@ services:
     network_mode: host
     networks: []
     privileged: true
+    environment:
+      LISTEN: ${LISTEN}
+      KEY: ${KEY}
     volumes:
       - /run/podman/podman.sock:/var/run/docker.sock:ro
       - beszel-socket:/var/lib/beszel-agent
