@@ -12,7 +12,7 @@ services:
     volumes:
       - 'scrutiny-config:/opt/scrutiny/config'
     environment:
-      SCRUTINY_WEB_INFLUXDB_HOST: 'influxdb'
+      SCRUTINY_WEB_INFLUXDB_HOST: 'scrutiny-influxdb'
     networks:
       - default
       - infrastructure-proxy
