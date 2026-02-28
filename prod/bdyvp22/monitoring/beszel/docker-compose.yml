@@ -3,9 +3,9 @@ services:
     container_name: beszel-hub
     image: docker.io/henrygd/beszel:latest
     restart: unless-stopped
-      environment:
-        DISABLE_PASSWORD_AUTH: true
-        USER_CREATION: true
+    environment:
+      DISABLE_PASSWORD_AUTH: true
+      USER_CREATION: true
     networks:
       - default
       - infrastructure-proxy
