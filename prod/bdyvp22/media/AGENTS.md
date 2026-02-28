@@ -28,7 +28,7 @@ Track the upstream valkey major version (currently v9). Major version bumps can 
 These are intentional deviations from the upstream compose and must be preserved during updates:
 
 - **`DB_HOSTNAME` / `REDIS_HOSTNAME`**: Set to quadlet container names (`immich-immich-database`, `immich-immich-redis`) instead of compose service names
-- **`x-podman-env-secrets`**: DB password injected via podman secrets rather than `.env` file
+- **`x-quad-ops-env-secrets`**: DB password injected via podman secrets rather than `.env` file
 - **`host_ip: 127.0.0.1`** on published ports: Binds only to loopback (traffic comes through the reverse proxy)
 - **Extra volume mount**: `/mnt/immich/photoprism-library:/mnt/media/photoprism:z` for photoprism library access
 - **`:z` SELinux labels** on bind mounts
