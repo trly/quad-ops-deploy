@@ -3,5 +3,5 @@
 }
 
 :8080 {
-	reverse_proxy whoami-whoami:80
+	reverse_proxy whoami-whoami:8081
 }

@@ -2,9 +2,13 @@ services:
   whoami:
     image: docker.io/traefik/whoami:latest
     restart: always
+    environment:
+      WHOAMI_PORT_NUMBER: 8081
     networks:
       - default
       - infrastructure-proxy
+    ports:
+      - "127.0.0.1:8081:8081"
 
 networks:
   default:
