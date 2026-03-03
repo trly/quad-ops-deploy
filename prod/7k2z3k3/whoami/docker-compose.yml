@@ -6,7 +6,7 @@ services:
       WHOAMI_PORT_NUMBER: 8081
     networks:
       - default
-      - caddy-app
+      - caddy-proxy
     ports:
       - "127.0.0.1:8081:8081"
 
