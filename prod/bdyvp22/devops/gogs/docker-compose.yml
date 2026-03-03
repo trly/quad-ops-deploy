@@ -1,0 +1,20 @@
+services:
+  web:
+    container_name: gogs-web
+    image: docker.io/gogs/gogs:latest
+    restart: always
+    environment:
+      - SOCAT_LINK=false
+    volumes:
+      - data:/data:z
+    networks:
+      - default
+      - infrastructure-proxy
+
+volumes:
+  data:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true

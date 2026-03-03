@@ -40,4 +40,9 @@
 	handle @id {
 		reverse_proxy infrastructure-pocket-id:1411
 	}
+
+	@gogs host git.home.trly.dev
+	handle @gogs {
+		reverse_proxy gogs-web:3000
+	}
 }
