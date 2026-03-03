@@ -1,7 +1,0 @@
-{
-	auto_https off
-}
-
-:8080 {
-	reverse_proxy whoami-whoami:8081
-}

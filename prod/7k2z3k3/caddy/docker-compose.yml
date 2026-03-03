@@ -1,11 +1,11 @@
 services:
-  reverse-proxy:
+ app:
     image: docker.io/library/caddy:latest
     restart: always
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro,z
-      - caddy-data:/data
-      - caddy-config:/config
+      - data:/data
+      - config:/config
     ports:
       - "127.0.0.1:8080:8080"
     networks:
@@ -13,8 +13,8 @@ services:
       - proxy
 
 volumes:
-  caddy-data:
-  caddy-config:
+  data:
+  config:
 
 networks:
   default:
