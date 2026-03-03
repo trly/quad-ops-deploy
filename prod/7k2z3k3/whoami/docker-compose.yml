@@ -1,0 +1,12 @@
+services:
+  whoami:
+    image: docker.io/traefik/whoami:latest
+    restart: always
+    networks:
+      - default
+      - infrastructure-proxy
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true
