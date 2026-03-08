@@ -1,17 +1,16 @@
 services:
-  gitea:
+  app:
     image: docker.gitea.com/gitea:1.25
     restart: always
     volumes:
-      - gitea-data:/data
-      - /etc/timezone:/etc/timezone:ro
+      - data:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
       - default
       - infrastructure-proxy
 
 volumes:
-  gitea-data:
+  data:
 
 networks:
   default:
