@@ -36,8 +36,8 @@
 		reverse_proxy miniflux-web:8080
 	}
 
-	@gogs host git.home.trly.dev
-	handle @gogs {
-		reverse_proxy gogs-web:3000
+	@gitea host git.home.trly.dev
+	handle @gitea {
+		reverse_proxy gitea-app:3000
 	}
 }
