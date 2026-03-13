@@ -1,5 +1,5 @@
 services:
-  kanboard-app:
+  app:
     image: ghcr.io/trly/kanboard:v1.2.51
     restart: always
     volumes:
