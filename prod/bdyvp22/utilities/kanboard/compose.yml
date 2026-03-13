@@ -1,0 +1,17 @@
+services:
+  kanboard-app:
+    image: ghcr.io/trly/kanboard:v1.2.51
+    restart: always
+    volumes:
+      - data:/var/www/app/data:z
+    networks:
+      - default
+      - infrastructure-proxy
+
+volumes:
+  data:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true

@@ -40,4 +40,9 @@
 	handle @gitea {
 		reverse_proxy gitea-app:3000
 	}
+
+	@kanboard host tasks.home.trly.dev
+	handle @kanboard {
+		reverse_proxy kanboard-app:80
+	}
 }
