@@ -14,7 +14,7 @@ services:
       - ENABLE_AUTOCOMPLETE_GENERATION=False
       - CHAT_RESPONSE_STREAM_DELTA_CHUNK_SIZE=5
     x-quad-ops-env-secrets:
-      open-webui-openrouter-api-key: OPENAI_API_KEYS
+      openrouter-api-key: OPENAI_API_KEYS
     volumes:
       - data:/app/backend/data
     networks:
