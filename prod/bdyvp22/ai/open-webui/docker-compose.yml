@@ -1,0 +1,34 @@
+services:
+  app:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui-app
+    restart: always
+    environment:
+      - OPENAI_API_BASE_URLS=https://openrouter.ai/api/v1
+      - ENABLE_OLLAMA_API=false
+      - ENABLE_BASE_MODELS_CACHE=True
+      - MODELS_CACHE_TTL=300
+      - ENABLE_QUERIES_CACHE=True
+      - RAG_SYSTEM_CONTEXT=True
+      - ENABLE_REALTIME_CHAT_SAVE=False
+      - ENABLE_AUTOCOMPLETE_GENERATION=False
+      - CHAT_RESPONSE_STREAM_DELTA_CHUNK_SIZE=5
+    x-quad-ops-env-secrets:
+      open-webui-openrouter-api-key: OPENAI_API_KEYS
+    volumes:
+      - data:/app/backend/data
+    networks:
+      - default
+      - infrastructure-proxy
+
+volumes:
+  data:
+
+networks:
+  default:
+  infrastructure-proxy:
+    external: true
+
+secrets:
+  openrouter-api-key:
+    external: true

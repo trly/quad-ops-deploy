@@ -45,4 +45,9 @@
 	handle @kanboard {
 		reverse_proxy kanboard-app:80
 	}
+
+	@openwebui host ai.home.trly.dev
+	handle @openwebui {
+		reverse_proxy open-webui-app:8080
+	}
 }
