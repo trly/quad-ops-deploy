@@ -1,6 +1,7 @@
 services:
   influxdb:
     image: docker.io/library/influxdb:2.2
+    restart: always
     volumes:
       - 'scrutiny-influxdb:/var/lib/influxdb2'
     networks:
@@ -9,6 +10,7 @@ services:
   web:
     container_name: scrutiny-web
     image: 'ghcr.io/analogj/scrutiny:master-web'
+    restart: always
     volumes:
       - 'scrutiny-config:/opt/scrutiny/config'
     environment:
@@ -18,7 +20,10 @@ services:
       - infrastructure-proxy
 
   collector:
+    depends_on:
+      - web
     image: 'ghcr.io/analogj/scrutiny:master-collector'
+    restart: always
     cap_add:
       - SYS_RAWIO
       - SYS_ADMIN
