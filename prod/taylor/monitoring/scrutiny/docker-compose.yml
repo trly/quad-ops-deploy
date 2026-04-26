@@ -1,6 +1,7 @@
 services:
   influxdb:
     image: docker.io/library/influxdb:2.2
+    restart: always
     volumes:
       - 'scrutiny-influxdb:/var/lib/influxdb2'
     healthcheck:
@@ -12,14 +13,15 @@ services:
       - default
 
   web:
+    container_name: scrutiny-web
     image: 'ghcr.io/analogj/scrutiny:master-web'
+    restart: always
     volumes:
       - 'scrutiny-config:/opt/scrutiny/config'
     environment:
-      SCRUTINY_WEB_INFLUXDB_HOST: 'influxdb'
+      SCRUTINY_WEB_INFLUXDB_HOST: 'scrutiny-influxdb'
     depends_on:
-      influxdb:
-        condition: service_healthy
+      - influxdb
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
       interval: 5s
@@ -32,18 +34,18 @@ services:
 
   collector:
     image: 'ghcr.io/analogj/scrutiny:master-collector'
+    restart: always
     cap_add:
       - SYS_RAWIO
       - SYS_ADMIN
     volumes:
       - '/run/udev:/run/udev:ro'
     environment:
-      COLLECTOR_API_ENDPOINT: 'https://scrutiny.media.localdomain'
+      COLLECTOR_API_ENDPOINT: 'http://scrutiny-web:8080'
       COLLECTOR_HOST_ID: 'polaris'
       COLLECTOR_RUN_STARTUP: true
     depends_on:
-      web:
-        condition: service_healthy
+      - web
     devices:
       - /dev/sda
       - /dev/sdb
@@ -54,7 +56,11 @@ services:
 
 volumes:
   scrutiny-influxdb:
+    name: scrutiny-scrutiny-influxdb
+    external: true
   scrutiny-config:
+    name: scrutiny-scrutiny-config
+    external: true
 
 networks:
   default:
