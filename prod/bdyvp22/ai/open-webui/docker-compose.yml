@@ -27,6 +27,10 @@ services:
     container_name: open-webui-ollama
     hostname: ollama
     restart: always
+    environment:
+      - OLLAMA_NUM_PARALLEL=4
+      - OLLAMA_MAX_LOADED_MODELS=2
+      - OLLAMA_KEEP_ALIVE=24h
     volumes:
       - ollama:/root/.ollama:z
     networks:
