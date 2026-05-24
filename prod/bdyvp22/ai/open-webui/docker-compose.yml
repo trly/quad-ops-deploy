@@ -5,7 +5,8 @@ services:
     restart: always
     environment:
       - OPENAI_API_BASE_URLS=https://openrouter.ai/api/v1
-      - ENABLE_OLLAMA_API=false
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - ENABLE_OLLAMA_API=true
       - ENABLE_BASE_MODELS_CACHE=True
       - MODELS_CACHE_TTL=300
       - ENABLE_QUERIES_CACHE=True
@@ -21,8 +22,19 @@ services:
       - default
       - infrastructure-proxy
 
+  ollama:
+    image: docker.io/ollama/ollama:latest
+    container_name: open-webui-ollama
+    hostname: ollama
+    restart: always
+    volumes:
+      - ollama:/root/.ollama:z
+    networks:
+      - default
+
 volumes:
   data:
+  ollama:
 
 networks:
   default:
