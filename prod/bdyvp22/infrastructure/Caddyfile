@@ -48,6 +48,13 @@
 
 	@openwebui host ai.home.trly.dev
 	handle @openwebui {
-		reverse_proxy open-webui-app:8080
+		@ollama_path path /openai/*
+		handle @ollama_path {
+			uri strip_prefix /openai
+			reverse_proxy ollama:11434
+		}
+		handle {
+			reverse_proxy open-webui-app:8080
+		}
 	}
 }
