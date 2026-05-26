@@ -57,4 +57,9 @@
 			reverse_proxy open-webui-app:8080
 		}
 	}
+
+	@llama host llama.home.trly.dev
+	handle @llama {
+		reverse_proxy llama:8080
+	}
 }
