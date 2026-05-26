@@ -4,9 +4,7 @@ services:
     container_name: open-webui-app
     restart: always
     environment:
-      - OPENAI_API_BASE_URLS=https://openrouter.ai/api/v1
-      - OLLAMA_BASE_URL=http://ollama:11434
-      - ENABLE_OLLAMA_API=true
+      - OPENAI_API_BASE_URLS=https://openrouter.ai/api/v1,http://llama:8080/v1
       - ENABLE_BASE_MODELS_CACHE=True
       - MODELS_CACHE_TTL=300
       - ENABLE_QUERIES_CACHE=True
@@ -22,24 +20,28 @@ services:
       - default
       - infrastructure-proxy
 
-  ollama:
-    image: docker.io/ollama/ollama:latest
-    container_name: open-webui-ollama
-    hostname: ollama
+  llm:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    container_name: open-webui-llm
+    hostname: llama
     restart: always
-    environment:
-      - OLLAMA_NUM_PARALLEL=4
-      - OLLAMA_MAX_LOADED_MODELS=2
-      - OLLAMA_KEEP_ALIVE=24h
+    working_dir: /models
+    command: >
+      --hf-repo bartowski/Llama-3.2-3B-Instruct-GGUF
+      --hf-file Llama-3.2-3B-Instruct-Q4_K_M.gguf
+      --host 0.0.0.0
+      --port 8080
+      -c 4096
     volumes:
-      - ollama:/root/.ollama:z
+      - models:/models:z
     networks:
       - default
       - infrastructure-proxy
 
 volumes:
   data:
-  ollama:
+  models:
+    name: ai_models
 
 networks:
   default:
