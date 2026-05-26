@@ -25,6 +25,8 @@ services:
     container_name: open-webui-llm
     hostname: llama
     restart: always
+    environment:
+      - LD_LIBRARY_PATH=/app
     working_dir: /models
     command: >
       --hf-repo bartowski/Llama-3.2-3B-Instruct-GGUF
