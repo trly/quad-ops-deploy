@@ -4,7 +4,7 @@ services:
     container_name: open-webui-app
     restart: always
     environment:
-      - OPENAI_API_BASE_URLS=https://openrouter.ai/api/v1;http://llama:8080/v1
+      - OPENAI_API_BASE_URLS=http://llama:8080/v1
       - ENABLE_BASE_MODELS_CACHE=True
       - MODELS_CACHE_TTL=300
       - ENABLE_QUERIES_CACHE=True
